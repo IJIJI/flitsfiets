@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: Subscriptions
+
+server:
+  port: 6001

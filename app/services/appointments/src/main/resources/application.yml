@@ -1,3 +1,6 @@
 spring:
   application:
     name: Appointments
+
+server:
+  port: 6000

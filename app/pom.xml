@@ -18,8 +18,8 @@
     <modules>
         <module>common</module>
         <module>services/appointments</module>
+        <module>services/subscriptions</module>
         <module>services/frontend</module>
-        <module>services/onboarding</module>
     </modules>
 
 </project>

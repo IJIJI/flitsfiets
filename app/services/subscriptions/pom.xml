@@ -12,8 +12,8 @@
 
 
     <groupId>synapt.flitsfiets</groupId>
-    <artifactId>onboarding</artifactId>
-    <name>Onboarding</name>
+    <artifactId>subscriptions</artifactId>
+    <name>Subscriptions</name>
 
     <properties>
         <java.version>25</java.version>
@@ -50,6 +50,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                <jmxPort>9102</jmxPort>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
