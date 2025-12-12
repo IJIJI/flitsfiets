@@ -10,9 +10,10 @@
         <version>0.1.0</version>
     </parent>
 
+
     <groupId>synapt.flitsfiets</groupId>
-    <artifactId>frontend</artifactId>
-    <name>Frontend</name>
+    <artifactId>appointments</artifactId>
+    <name>Appointments</name>
 
     <properties>
         <java.version>25</java.version>

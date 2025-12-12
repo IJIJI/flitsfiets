@@ -13,5 +13,7 @@ To get started in developing this project first build the common dependencies:
 ```
 You can then run the services using:
 ```bash
-./mvnw spring-boot:run -pl frontend
+./mvnw spring-boot:run -pl services/frontend
+./mvnw spring-boot:run -pl services/onboarding
+./mvnw spring-boot:run -pl services/appointments
 ```
