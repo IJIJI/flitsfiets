@@ -11,24 +11,24 @@ export default function PlanCard({index, setIndex, activeIndex, title, price, di
     discountedprice?: string
 }) {
     return (
-        <button className={"card bikeCard " + (activeIndex === index ? "active" : "")} onClick={() => setIndex(index)}>
+        <button className={"card planCard " + (activeIndex === index ? "active" : "")} onClick={() => setIndex(index)}>
             <h3>{title}</h3>
 
             {discountedprice == null ?
                 <div className="priceDiv">
-                    <div className="original">
+                    <span className="original">
                         {price}
-                    </div>
+                    </span>
                 </div>
                 :
 
-                <div className="priceDiv discounted">
-                    <div className="original">
+                <div className={"priceDiv discounted"}>
+                    <span className="original">
                         {price}
-                    </div>
-                    <div className="discounted">
+                    </span>
+                    <span className="discounted">
                         {discountedprice}
-                    </div>
+                    </span>
                 </div>
             }
         </button>

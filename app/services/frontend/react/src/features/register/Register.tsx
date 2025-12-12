@@ -18,7 +18,7 @@ export default function Register() {
     return (
         <MultiStepFormContainer
             titles={["Choose a City", "Our Bikes in " + city, "Choose Your Plan", "Nice to meet you!", "Make an Appointment"]}
-            completed={[city != null, activeBike != 0, false, false, true]}
+            completed={[city != null, activeBike != 0, activePlan != 0, false, true]}
         >
             <FormStep>
                 <FormGroup>
@@ -62,13 +62,17 @@ export default function Register() {
                               description={"Powerful electric bike that will get you places"} startprice={"€29,99"}
                               icon={<MdElectricBike/>}/>
                     <BikeCard index={4} activeIndex={activeBike} setIndex={setActiveBike} title={"Moped"}
-                              description={"Fast electric moped: never be late again"} startprice={"€39,99"}
+                              description={"Fast electric moped: Never be late again"} startprice={"€39,99"}
                               icon={<MdElectricMoped/>}/>
                 </BikeCardGrid>
             </FormStep>
             <PlanCardGrid>
-                <PlanCard title={"2 Years"} index={1} activeIndex={activePlan} setIndex={setActivePlan} price={"260"}
-                          discountedprice={"199,99"}/>
+                <PlanCard title={"Monthly"} index={1} activeIndex={activePlan} setIndex={setActivePlan} price={"35,-"}
+                />
+                <PlanCard title={"Yearly"} index={2} activeIndex={activePlan} setIndex={setActivePlan} price={"35,-"}
+                          discountedprice={"29,99"}/>
+                <PlanCard title={"2 Years"} index={3} activeIndex={activePlan} setIndex={setActivePlan} price={"35,-"}
+                          discountedprice={"19,99"}/>
             </PlanCardGrid>
             <FormStep>
                 Step 3 Content
