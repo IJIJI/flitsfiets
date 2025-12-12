@@ -19,5 +19,13 @@ You can then run the services using:
 ```
 You can also run multiple services at once:
 ```bash
-./mvnw spring-boot:run -pl services/appointments,services/frontend,services/onboarding
+./mvnw spring-boot:start -am -pl services/appointments,services/frontend,services/onboarding
 ```
+
+
+## Ports
+| Service      | Port | JMX Port |
+|--------------|------|----------|
+| Frontend     | 8080 | 9101     |
+| Onboarding   | 6001 | 9102     |
+| Appointments | 6000 | 9103     |
