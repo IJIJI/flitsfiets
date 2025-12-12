@@ -1,0 +1,37 @@
+.card {
+  border: 3px solid lightgray;
+  border-radius: 10px;
+
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover, &:focus, &:active, &.active {
+    box-shadow: 0 0 5px 0 var(--bs-primary);
+
+  }
+  &.active {
+    border: 3px solid var(--bs-primary);
+  }
+}
+
+
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  .card {
+    padding: 30px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+      width: 30%;
+      height: auto;
+      margin-bottom: 0;
+    }
+  }
+}

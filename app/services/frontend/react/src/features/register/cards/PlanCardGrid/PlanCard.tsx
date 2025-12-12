@@ -1,0 +1,36 @@
+import "./planCard.less";
+import "./../card.less";
+
+
+export default function PlanCard({index, setIndex, activeIndex, title, price, discountedprice}: {
+    index: number,
+    setIndex: (index: number) => void,
+    activeIndex: number,
+    title: string,
+    price: string,
+    discountedprice?: string
+}) {
+    return (
+        <button className={"card bikeCard " + (activeIndex === index ? "active" : "")} onClick={() => setIndex(index)}>
+            <h3>{title}</h3>
+
+            {discountedprice == null ?
+                <div className="priceDiv">
+                    <div className="original">
+                        {price}
+                    </div>
+                </div>
+                :
+
+                <div className="priceDiv discounted">
+                    <div className="original">
+                        {price}
+                    </div>
+                    <div className="discounted">
+                        {discountedprice}
+                    </div>
+                </div>
+            }
+        </button>
+    )
+}
