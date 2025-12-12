@@ -8,7 +8,7 @@ FlitsFiets is a bicycle subscription service. You can choose a subscription plan
 # Development
 To get started in developing this project first build the common dependencies:
 ```bash
-./mvnw install
+./mvnw clean install
 
 ```
 You can then run the services using:
@@ -16,4 +16,8 @@ You can then run the services using:
 ./mvnw spring-boot:run -pl services/frontend
 ./mvnw spring-boot:run -pl services/onboarding
 ./mvnw spring-boot:run -pl services/appointments
+```
+You can also run multiple services at once:
+```bash
+./mvnw spring-boot:run -pl services/appointments,services/frontend,services/onboarding
 ```
