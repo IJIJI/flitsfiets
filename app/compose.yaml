@@ -1,0 +1,64 @@
+name: FlitsFiets
+services:
+  postgres:
+    image: 'postgres:18'
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U aclive_user -d aclive" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_DB: flietsfiets
+      POSTGRES_USER: flitsfiets_user
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+
+  smtp4dev:
+    image: rnwood/smtp4dev:v3
+    restart: always
+    ports:
+      # Change the number before : to the port the web interface should be accessible on
+      # Add 127.0.0.1: prefix for localhost-only access (recommended for security)
+      - '5000:80'
+      # Change the number before : to the port the SMTP server should be accessible on
+      # Add 127.0.0.1: prefix for localhost-only access (recommended for security)
+      - '25:25'
+      # Change the number before : to the port the IMAP server should be accessible on
+      # Add 127.0.0.1: prefix for localhost-only access (recommended for security)
+      - '143:143'
+      # Change the number before : to the port the POP3 server should be accessible on
+      # Add 127.0.0.1: prefix for localhost-only access (recommended for security)
+    #      - '110:110'
+    volumes:
+      # This is where smtp4dev stores the database..
+      - smtp4dev-data:/smtp4dev
+    environment:
+      #Specifies the URLs the web UI will use inside the container.
+      - ServerOptions__Urls=http://*:80
+      #Specifies the server hostname. Used in auto-generated TLS certificate if enabled.
+      - ServerOptions__HostName=smtp4dev
+      #Specifies the port the IMAP server will listen on - allows standard email clients to view/retrieve messages
+      #"ServerOptions__ImapPort"=143
+      #Specifies the port the POP3 server will listen on - allows standard email clients to retrieve/delete messages
+      #"ServerOptions__Pop3Port"=110
+      #Specifies POP3 TLS mode (None, StartTls, ImplicitTls) and whether secure connection is required
+      #"ServerOptions__Pop3TlsMode"=StartTls
+      #"ServerOptions__Pop3SecureConnectionRequired"=false
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:80']
+  #    healthcheck:
+  #      test: ["CMD-SHELL", "wget -qO- http://localhost/ || exit 1"]
+  #      interval: 5s
+  #      timeout: 3s
+  #      retries: 12
+  #      start_period: 10s
+
+
+
+
+volumes:
+  smtp4dev-data:
+  pgdata:
