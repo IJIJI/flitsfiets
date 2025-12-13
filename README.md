@@ -1,6 +1,9 @@
 # FlitsFiets - Een fiets in een flits!
 To gain more experience in developing microservice applications, I am building FlitsFiets: **the** application to get a well-built bike in a flash.
 
+> [!CAUTION]
+> This is a personal project and is not intended for production use. It is built for learning purposes only, and there are definitely some security issues.
+
 ## Brief description
 FlitsFiets is a bicycle subscription service. You can choose a subscription plan and pick up the corresponding bike the same day. Within your plan, maintenance is included, for which you can make appointments in the app. For long repairs, you can get a loaner bike within a flash, which you can use while yours is being repaired. FlitsFiets offers its users the guarantee of a functioning bike, always.
 
@@ -35,8 +38,10 @@ You can also run multiple services at once:
 
 
 ## Ports
-| Service      | Port | JMX Port |
-|--------------|------|----------|
-| Frontend     | 8080 | 9101     |
-| Onboarding   | 6001 | 9102     |
-| Appointments | 6000 | 9103     |
+| Type     | Name         | Port | JMX Port |
+|----------|--------------|------|----------|
+| Database | Postgress    | 5432 | -        |
+| Auth     | Keycloak     | 8080 | -        |
+| Service  | Frontend     | 8000 | 9101     |
+| Service  | Subscription | 6001 | 9102     |
+| Service  | Appointments | 6000 | 9103     |
