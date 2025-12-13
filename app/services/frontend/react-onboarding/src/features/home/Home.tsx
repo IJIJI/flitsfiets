@@ -10,7 +10,7 @@ export default function Home () {
             <Link to={"/register"} className="btn btn-primary btn-lg primary" viewTransition>
                 Get started <MdArrowForward />
             </Link>
-            <a href="https://github.com/IJIJI/flitsfiets" className={"text-secondary"} target="_top">
+            <a href="https://github.com/IJIJI/flitsfiets" className={"text-secondary"} target="_blank">
                 <small>View Repo on GitHub <MdOpenInNew /></small>
             </a>
         </div>
