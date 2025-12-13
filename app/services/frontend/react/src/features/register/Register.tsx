@@ -57,10 +57,19 @@ export default function Register() {
     const contactFormRef = useRef<HTMLFormElement>(null);
     const [contactFormValid, setContactFormValid] = useState(false);
 
+    const emailInputRef = useRef<HTMLInputElement>(null);
+    const [emailInputValid, setEmailInputValid] = useState(true);
+
     const updateContactFormValidity = () => {
         const form = contactFormRef.current;
         if (!form) return;
         setContactFormValid(form.checkValidity());
+    };
+
+    const updateEmailInoutValidity = () => {
+        const input = emailInputRef.current;
+        if (!input) return;
+        setEmailInputValid(input.checkValidity() || input.value.length == 0);
     };
 
     return (
@@ -261,7 +270,7 @@ export default function Register() {
                                            }
                                        });
                                    }}
-                                   required/>
+                                   />
                         </FormGroup>
                         <FormGroup className={"col-6"}>
                             <Label className={"m-0"} for="city">City:</Label>
@@ -307,6 +316,7 @@ export default function Register() {
                     <FormGroup>
                         <Label className={"m-0"} for="email">Email:</Label>
                         <Input type="email" name="email" id="email"
+                               innerRef={emailInputRef}
                                value={onboardingData.contact.email}
                                onChange={(event) => {
                                    setOnboardingData({
@@ -316,10 +326,12 @@ export default function Register() {
                                            email: event.target.value
                                        }
                                    });
+                                   updateEmailInoutValidity();
                                }}
+                               invalid={!emailInputValid}
                                required/>
                         <FormFeedback invalid={"true"}>
-                            Passwords do not match.
+                            Email is invalid.
                         </FormFeedback>
                     </FormGroup>
                     <FormGroup>
@@ -342,7 +354,8 @@ export default function Register() {
                     <FormGroup>
                         <Label className={"m-0"} for="passwordCheck">Confirm Password:</Label>
                         <Input id="passwordCheck" innerRef={passCheckRef} type="password"
-                               name="passwordcheck" invalid={!passwordsMatch} onChange={checkPassEqual} required/>
+                               name="passwordcheck" invalid={!passwordsMatch} onChange={checkPassEqual}
+                               required/>
                         <FormFeedback invalid={"true"}>
                             Passwords do not match.
                         </FormFeedback>
