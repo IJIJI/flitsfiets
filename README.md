@@ -4,6 +4,17 @@ To gain more experience in developing microservice applications, I am building F
 ## Brief description
 FlitsFiets is a bicycle subscription service. You can choose a subscription plan and pick up the corresponding bike the same day. Within your plan, maintenance is included, for which you can make appointments in the app. For long repairs, you can get a loaner bike within a flash, which you can use while yours is being repaired. FlitsFiets offers its users the guarantee of a functioning bike, always.
 
+## Technology
+This project is built using a microservice architecture using Spring Boot services. 
+
+These are the following services:
+- Onboarding: Handles user registration and onboarding. There is no authentication on onboarding, hence the separation.
+- Frontend: Serves the main and onboarding web application.
+- Appointments: Manages all appointments.
+- Subscriptions: Manages sunscription plans and user subscriptions.
+- Fleet: Manages the fleet of bikes, including loaner bikes.
+- Authentication: Handles authentication and authorization using JWT tokens.
+
 
 # Development
 To get started in developing this project first build the common dependencies:
