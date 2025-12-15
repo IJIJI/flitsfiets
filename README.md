@@ -50,5 +50,5 @@ They can then be stopped by running:
 | Auth     | Keycloak     | 8080 | -        |
 | Service  | Frontend     | 8000 | 9100     |
 | Service  | Onboarding   | 8010 | 9101     |
-| Service  | Subscription | 6001 | 9102     |
+| Service  | Users        | 6001 | 9102     |
 | Service  | Appointments | 6000 | 9103     |
