@@ -8,6 +8,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: app
       RABBITMQ_DEFAULT_PASS: secret
+    networks:
+      - internal
   caddy:
     image: caddy:2-alpine
     restart: unless-stopped
