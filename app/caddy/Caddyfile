@@ -1,0 +1,19 @@
+{
+    # Global options block. Entirely optional, https is on by default
+    # Optional email key for lets encrypt
+    email info@flitsfiets.nl
+    # Optional staging lets encrypt for testing. Comment out for production.
+    # acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+flitsfiets.nl {
+    reverse_proxy service-onboarding:8010
+}
+www.flitsfiets.nl {
+    redir https://flitsfiets.nl{uri}
+}
+app.flitsfiets.nl {
+    reverse_proxy service-frontend:8000
+}
+www.app.flitsfiets.nl {
+    redir https://app.flitsfiets.nl{uri}
+}

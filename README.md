@@ -35,6 +35,11 @@ You can also run multiple services at once:
 ```bash
 ./mvnw spring-boot:start -pl services/frontend,services/onboarding,services/subscriptions,services/appointments
 ```
+They can then be stopped by running:
+
+```bash
+./mvnw spring-boot:stop -pl services/frontend,services/onboarding,services/subscriptions,services/appointments
+```
 
 
 ## Ports
