@@ -30,6 +30,7 @@ You can then run the services using:
 ./mvnw spring-boot:run -pl services/frontend
 ./mvnw spring-boot:run -pl services/onboarding
 ./mvnw spring-boot:run -pl services/appointments
+...
 ```
 You can also run multiple services at once:
 ```bash
@@ -43,11 +44,12 @@ They can then be stopped by running:
 
 
 ## Ports
-| Type     | Name         | Port | JMX Port |
-|----------|--------------|------|----------|
-| Database | Postgress    | 5432 | -        |
-| Auth     | Keycloak     | 8080 | -        |
-| Service  | Frontend     | 8000 | 9100     |
-| Service  | Onboarding   | 8010 | 9101     |
-| Service  | Subscription | 6001 | 9102     |
-| Service  | Appointments | 6000 | 9103     |
+| Type     | Name         | Responsibilities                                                     | Port | JMX Port |
+|----------|--------------|----------------------------------------------------------------------|------|----------|
+| Proxy    | Caddy        | Connecting the right services                                        | 80   | -        |
+| Database | Postgres     |                                                                      | 5432 | -        |
+| Auth     | Keycloak     |                                                                      | 8080 | -        |
+| Service  | Frontend     | Serving the frontend                                                 | 8000 | 9100     |
+| Service  | Onboarding   | Serving the onboarding and handling the correct onboarding api calls | 8010 | 9101     |
+| Service  | Users        | User data and subscription management.                               | 6001 | 9102     |
+| Service  | Appointments | Appointment planning.                                                | 6000 | 9103     |

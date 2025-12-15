@@ -1,13 +1,13 @@
-package synapt.flitsfiets.subscriptions;
+package synapt.flitsfiets.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SubscriptionsApplication {
+public class UsersApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SubscriptionsApplication.class, args);
+		SpringApplication.run(UsersApplication.class, args);
 	}
 
 }
