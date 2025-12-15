@@ -1,5 +1,9 @@
 
 # Development
+
+>[!NOTE]
+> The main branch of this repository is automatically deployed to the vps behind flitsfiets.nl
+
 To get started in developing this project first build the common dependencies:
 ```bash
 ./mvnw clean install
