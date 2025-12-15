@@ -30,6 +30,7 @@ You can then run the services using:
 ./mvnw spring-boot:run -pl services/frontend
 ./mvnw spring-boot:run -pl services/onboarding
 ./mvnw spring-boot:run -pl services/appointments
+...
 ```
 You can also run multiple services at once:
 ```bash
