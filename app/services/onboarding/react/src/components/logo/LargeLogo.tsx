@@ -1,7 +1,7 @@
 import {MdDirectionsBike, MdFlashOn} from "react-icons/md";
 import "./logo.less";
 
-export default function Logo() {
+export default function LargeLogo() {
     return (
         <>
             <MdDirectionsBike size={"14rem"} color={"white"}/><h1 className={"m-0 text-white"}>BikeFla<MdFlashOn
