@@ -1,0 +1,64 @@
+.card {
+  border: 3px solid lightgray;
+  border-radius: 10px;
+
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover, &:focus, &:active, &.active {
+    box-shadow: 0 0 5px 0 var(--bs-primary);
+
+  }
+
+  &.active {
+    border: 3px solid var(--bs-primary);
+  }
+}
+
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  .card {
+    padding: 20px 15px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+      width: 30%;
+      height: auto;
+      margin-bottom: 0;
+      margin-right: 10px;
+    }
+
+    .infostack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: end;
+      gap: 0px;
+      height: 100%;
+
+      max-width: 40%;
+
+      * {
+        margin: 0;
+      }
+      p {
+        font-size: 0.9rem;
+      }
+      small {
+        margin-top: auto;
+        span{
+          font-weight: bold;
+          font-style: italic;
+          color: var(--bs-primary);
+        }
+      }
+    }
+  }
+}

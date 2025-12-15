@@ -1,0 +1,65 @@
+
+.cardGrid.planGrid {
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  .card.planCard {
+    flex-direction: column;
+    gap: 10px;
+
+    .priceDiv {
+      width: 80%;
+      height: 4rem;
+
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span.original {
+        font-size: 2rem;
+        color: var(--bs-primary);
+      }
+
+      span.discounted {
+        display: none;
+      }
+
+      &.discounted {
+
+        span {
+          padding: 0.10rem 0.3rem;
+          border-radius: 5px;
+        }
+
+        span.original {
+          font-size: 1.5rem;
+          margin-right: 3rem;
+
+          text-decoration: line-through;
+          color: red;
+          border: 1px solid red;
+
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        span.discounted {
+          display: inline;
+          font-size: 1.5rem;
+
+          color: white;
+          background-color: var(--bs-primary);
+
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+      }
+
+
+    }
+
+  }
+}

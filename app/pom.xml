@@ -19,7 +19,7 @@
         <module>common</module>
         <module>services/frontend</module>
         <module>services/onboarding</module>
-        <module>services/subscriptions</module>
+        <module>services/users</module>
         <module>services/appointments</module>
     </modules>
 
