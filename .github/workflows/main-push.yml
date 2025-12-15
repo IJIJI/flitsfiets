@@ -78,5 +78,5 @@ jobs:
             cd ~/flitsfiets/upload
             mvn clean install
             docker compose down
-            docker compose up --wait
+            docker compose --profile prod up --wait
             
