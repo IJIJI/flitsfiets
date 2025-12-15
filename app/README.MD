@@ -18,12 +18,12 @@ You can then run the services using:
 ```
 You can also run multiple services at once:
 ```bash
-./mvnw spring-boot:start -pl services/frontend,services/onboarding,services/subscriptions,services/appointments
+./mvnw spring-boot:start -pl services/frontend,services/onboarding,services/users,services/appointments
 ```
 They can then be stopped by running:
 
 ```bash
-./mvnw spring-boot:stop -pl services/frontend,services/onboarding,services/subscriptions,services/appointments
+./mvnw spring-boot:stop -pl services/frontend,services/onboarding,services/users,services/appointments
 ```
 
 
