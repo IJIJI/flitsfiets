@@ -14,9 +14,11 @@ export default function FormContainer({children, className}: {
 }) {
 
     return (
-        <div
-            className={"formContainer " + (className ? className : "")}>
-            {children}
+        <div className="formDiv">
+            <div
+                className={"formContainer " + (className ? className : "")}>
+                {children}
+            </div>
         </div>
     )
 }
