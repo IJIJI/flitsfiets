@@ -10,6 +10,16 @@ nav.navbar {
   padding: 0;
   min-height: 4.5rem;
   width: 100%;
+
+  a.navbar-brand {
+
+    transition: transform 500ms ease !important;
+
+    &.hidden{
+      transform: translate(0,-150%);
+    }
+
+  }
 }
 
 nav.navbar.sticky-active, nav.navbar.active  {

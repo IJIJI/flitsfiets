@@ -66,9 +66,9 @@ export default function MainNav(props: NavProps) {
             className={props.shadow ? "active" : ""}
             ref={navbarRef}
         >
-            {!props.hideLogo &&
-                <NavbarBrand to="/" tag={RRNavLink}><Logo /></NavbarBrand>
-            }
+
+            <NavbarBrand to="/" tag={RRNavLink} className={props.hideLogo && "hidden"}><Logo /></NavbarBrand>
+
             <NavbarToggler onClick={toggleNavbar}/>
             <Collapse isOpen={!collapsed} navbar>
                 <Nav className="mr-auto flex-grow-1" navbar>
