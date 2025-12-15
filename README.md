@@ -47,7 +47,7 @@ They can then be stopped by running:
 | Type     | Name         | Responsibilities                                                     | Port | JMX Port |
 |----------|--------------|----------------------------------------------------------------------|------|----------|
 | Proxy    | Caddy        | Connecting the right services                                        | 80   | -        |
-| Database | Postgress    |                                                                      | 5432 | -        |
+| Database | Postgres     |                                                                      | 5432 | -        |
 | Auth     | Keycloak     |                                                                      | 8080 | -        |
 | Service  | Frontend     | Serving the frontend                                                 | 8000 | 9100     |
 | Service  | Onboarding   | Serving the onboarding and handling the correct onboarding api calls | 8010 | 9101     |
