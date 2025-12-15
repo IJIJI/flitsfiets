@@ -28,12 +28,12 @@ They can then be stopped by running:
 
 
 ## Ports
-| Type     | Name         | Responsibilities                                                     | Port | JMX Port |
-|----------|--------------|----------------------------------------------------------------------|------|----------|
-| Proxy    | Caddy        | Connecting the right services                                        | 80   | -        |
-| Database | Postgres     |                                                                      | 5432 | -        |
-| Auth     | Keycloak     |                                                                      | 8080 | -        |
-| Service  | Frontend     | Serving the frontend                                                 | 8000 | 9100     |
-| Service  | Onboarding   | Serving the onboarding and handling the correct onboarding api calls | 8010 | 9101     |
-| Service  | Users        | User data and subscription management.                               | 6001 | 9102     |
-| Service  | Appointments | Appointment planning.                                                | 6000 | 9103     |
+| Type          | Name         | Responsibilities                                                     | Port | JMX Port | UI    |
+|---------------|--------------|----------------------------------------------------------------------|------|----------|-------|
+| Proxy         | Caddy        | Connecting the right services                                        | 80   | -        |       |
+| Event Channel | RabbitMQ     |                                                                      | 5672 | -        | 15672 |
+| Auth          | Keycloak     |                                                                      | 8080 | -        |       |
+| Service       | Frontend     | Serving the frontend                                                 | 8000 | 9100     |       | 
+| Service       | Onboarding   | Serving the onboarding and handling the correct onboarding api calls | 8010 | 9101     |       | 
+| Service       | Users        | User data and subscription management.                               | 6001 | 9102     |       | 
+| Service       | Appointments | Appointment planning.                                                | 6000 | 9103     |       |

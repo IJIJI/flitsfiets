@@ -1,22 +1,13 @@
 name: FlitsFiets
 services:
-  postgres:
-    image: 'postgres:18'
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U aclive_user -d aclive" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    environment:
-      POSTGRES_DB: flietsfiets
-      POSTGRES_USER: flitsfiets_user
-      POSTGRES_PASSWORD: secret
+  rabbitmq:
+    image: rabbitmq:3-management
     ports:
-      - 5432:5432
-    volumes:
-      - pgdata:/var/lib/postgresql
-    networks:
-      - internal
+      - "5672:5672"
+      - "15672:15672"   # UI
+    environment:
+      RABBITMQ_DEFAULT_USER: app
+      RABBITMQ_DEFAULT_PASS: secret
   caddy:
     image: caddy:2-alpine
     restart: unless-stopped
