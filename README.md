@@ -33,7 +33,7 @@ You can then run the services using:
 ```
 You can also run multiple services at once:
 ```bash
-./mvnw spring-boot:start -am -pl services/appointments,services/frontend,services/onboarding
+./mvnw spring-boot:start -pl services/frontend,services/onboarding,services/subscriptions,services/appointments
 ```
 
 
@@ -42,6 +42,7 @@ You can also run multiple services at once:
 |----------|--------------|------|----------|
 | Database | Postgress    | 5432 | -        |
 | Auth     | Keycloak     | 8080 | -        |
-| Service  | Frontend     | 8000 | 9101     |
+| Service  | Frontend     | 8000 | 9100     |
+| Service  | Onboarding   | 8010 | 9101     |
 | Service  | Subscription | 6001 | 9102     |
 | Service  | Appointments | 6000 | 9103     |

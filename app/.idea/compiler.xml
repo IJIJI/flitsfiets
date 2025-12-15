@@ -8,7 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common" />
       </profile>
-      <profile name="Annotation profile for appointments" enabled="true">
+      <profile name="Annotation profile for Onboarding" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -16,7 +16,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
-        <module name="appointments" />
+        <module name="onboarding" />
+        <module name="frontend" />
       </profile>
       <profile name="Annotation profile for flitsfiets" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -25,12 +26,11 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
-        <module name="frontend" />
         <module name="subscriptions" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="onboarding" target="25" />
+      <module name="frontend (1)" target="25" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -38,6 +38,7 @@
       <module name="appointments" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="frontend" options="-parameters" />
+      <module name="frontend (1)" options="-parameters" />
       <module name="onboarding" options="-parameters" />
       <module name="subscriptions" options="-parameters" />
     </option>
