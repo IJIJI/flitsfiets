@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import synapt.flitsfiets.users.enums.SubscriptionType;
+import synapt.flitsfiets.common.enums.SubscriptionType;
 
 import java.time.Instant;
 
@@ -26,8 +25,12 @@ public class UserSubscriptionPeriod {
     private User user;
 
     //    Should be VO stored in the common library
+    @Enumerated(EnumType.STRING)
     private SubscriptionType subscription;
 
+    @Column(nullable = false)
     private Instant startDate;
     private Instant endDate;
+
+//    Add blamable?
 }

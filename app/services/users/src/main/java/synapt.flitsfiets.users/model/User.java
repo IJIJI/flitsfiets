@@ -9,8 +9,8 @@ import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import synapt.flitsfiets.users.enums.UserType;
-import synapt.flitsfiets.users.valueObject.UserAddress;
+import synapt.flitsfiets.common.enums.UserType;
+import synapt.flitsfiets.common.valueObject.UserAddress;
 
 import java.time.Instant;
 import java.util.List;
@@ -48,6 +48,7 @@ public class User {
     private UserAddress address;
 
 //    Should be role based. No security implemented. For now, just a simple enum.
+    @Enumerated(EnumType.STRING)
     private UserType type;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", orphanRemoval = true)
@@ -57,6 +58,7 @@ public class User {
     private Instant created;
     @LastModifiedDate
     private Instant updated;
+//    Add blamable?
 
     public User(String email, String telephone, String password, String name, String surname) {
         this.email = email;
@@ -64,5 +66,18 @@ public class User {
         this.password = password;
         this.name = name;
         this.surname = surname;
+    }
+
+    public UserSubscriptionPeriod getActiveSubscription() {
+        if (subscriptions == null)
+            return null;
+
+        Instant now = Instant.now();
+        for (UserSubscriptionPeriod subscription : subscriptions) {
+            if (subscription.getStartDate().isBefore(now) && subscription.getEndDate().isAfter(now))
+                return subscription;
+        }
+
+        return null;
     }
 }

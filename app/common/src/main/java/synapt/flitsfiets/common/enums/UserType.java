@@ -1,4 +1,4 @@
-package synapt.flitsfiets.users.enums;
+package synapt.flitsfiets.common.enums;
 
 public enum UserType
 {

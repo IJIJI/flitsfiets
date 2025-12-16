@@ -1,4 +1,4 @@
-package synapt.flitsfiets.users.valueObject;
+package synapt.flitsfiets.common.valueObject;
 
 import lombok.Value;
 
