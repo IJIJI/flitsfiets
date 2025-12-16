@@ -17,7 +17,7 @@ export default function Register() {
         bikeType: BikeType.UNDEFINED,
         planType: PlanType.UNDEFINED,
         personal: {birthdate: "", length: 0, name: "", surname: ""},
-        address: {city: "", country: "", postalCode: "", street: "", streetNumber: 0},
+        address: {city: "", country: "", postalCode: "", street: "", streetNumber: ""},
         contact: {email: "", password: "", telephone: ""}
 
     });
@@ -242,7 +242,7 @@ export default function Register() {
                                            ...onboardingData,
                                            address: {
                                                ...onboardingData.address,
-                                               streetNumber: event.target.value as any as number
+                                               streetNumber: event.target.value
                                            }
                                        });
                                    }}
