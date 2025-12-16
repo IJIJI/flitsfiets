@@ -6,13 +6,13 @@
     # acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
 }
 flitsfiets.nl {
-    reverse_proxy service-onboarding:8010
+    reverse_proxy http://service-onboarding:8010
 }
 www.flitsfiets.nl {
     redir https://flitsfiets.nl{uri}
 }
 app.flitsfiets.nl {
-    reverse_proxy service-frontend:8000
+    reverse_proxy http://service-frontend:8000
 }
 www.app.flitsfiets.nl {
     redir https://app.flitsfiets.nl{uri}

@@ -23,9 +23,8 @@ export interface OnboardingData {
     };
     address: {
         postalCode: string;
-        streetNumber: number;
+        streetNumber: string;
         street: string;
-        numberAddition: string;
         city: string;
         country: string;
     };
