@@ -20,4 +20,4 @@ These are the following services:
 
 
 # Development
-To get started in developing this project you should look at the [Development](./app/README.md) documentation.
+To get started in developing this project you should look at the [Development](./app/) documentation.
