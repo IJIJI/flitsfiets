@@ -41,6 +41,13 @@
         </dependency>
 
         <dependency>
+            <groupId>synapt.flitsfiets</groupId>
+            <artifactId>common</artifactId>
+            <version>0.1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
@@ -130,7 +137,7 @@
             <!--                <groupId>org.springframework.boot</groupId>-->
             <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
             <!--                <configuration>-->
-            <!--                    <jmxPort>9100</jmxPort>-->
+            <!--                    <jmxPort>9101</jmxPort>-->
             <!--                    <excludes>-->
             <!--                        <exclude>-->
             <!--                            <groupId>org.projectlombok</groupId>-->
@@ -151,8 +158,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <jmxPort>9100</jmxPort>
-                    <imageName>ff-frontend</imageName>
+                    <jmxPort>9101</jmxPort>
+                    <imageName>ff-onboarding</imageName>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
