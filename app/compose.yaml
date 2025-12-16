@@ -2,7 +2,7 @@ name: FlitsFiets
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    ports:
+    ports: # Should not be exposed and done through the internal network with discovery. Exposed here for development purposes only.
       - "5672:5672"
       - "15672:15672"   # UI
     environment:
@@ -14,8 +14,8 @@ services:
     image: caddy:2-alpine
     restart: unless-stopped
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddydata:/data
@@ -71,7 +71,7 @@ services:
       # Add 127.0.0.1: prefix for localhost-only access (recommended for security)
     #      - '110:110'
     volumes:
-      # This is where smtp4dev stores the database..
+      # This is where smtp4dev stores the database...
       - smtp4dev-data:/smtp4dev
     environment:
       #Specifies the URLs the web UI will use inside the container.
@@ -98,18 +98,8 @@ services:
 
   service-onboarding:
     image: 'ff-onboarding:latest'
-    depends_on:
-      postgres:
-        condition: service_started
-    environment:
-      #      SMTP_HOST: ${SMTP_HOST}
-      #      SMTP_PORT: ${SMTP_PORT:-25}
-      #      SMTP_USERNAME: ${SMTP_USERNAME}
-      #      SMTP_PASSWORD: ${SMTP_PASSWORD}
-      #      JWT_SECRET: ${JWT_SECRET}
-      POSTGRES_PASSWORD: secret
     ports:
-      - 8090:8010
+      - "8090:8010"
     restart: unless-stopped
     networks:
       - internal
@@ -117,32 +107,38 @@ services:
 
   service-frontend:
     image: 'ff-frontend:latest'
-    depends_on:
-      postgres:
-        condition: service_started
-    environment:
-      #      SMTP_HOST: ${SMTP_HOST}
-      #      SMTP_PORT: ${SMTP_PORT:-25}
-      #      SMTP_USERNAME: ${SMTP_USERNAME}
-      #      SMTP_PASSWORD: ${SMTP_PASSWORD}
-      #      JWT_SECRET: ${JWT_SECRET}
-      POSTGRES_PASSWORD: secret
-    #    ports:
-    #      - 80:8080
+    restart: unless-stopped
+    networks:
+      - internal
+    profiles: [ prod ]
+
+  service-users:
+    image: 'ff-users:latest'
+#    depends_on:
+#      postgres:
+#        condition: service_started
+    restart: unless-stopped
+    networks:
+      - internal
+    profiles: [ prod ]
+
+  service-appointments:
+    image: 'ff-appointments:latest'
+#    depends_on:
+#      postgres:
+#        condition: service_started
     restart: unless-stopped
     networks:
       - internal
     profiles: [ prod ]
 
 networks:
-  #  web:
-  #    external: true
   internal:
     external: false
     driver: bridge
 
 volumes:
-  pgdata:
+#  pgdata:
   caddydata:
   caddyconfig:
-#  smtp4dev-data:
+  smtp4dev-data:
