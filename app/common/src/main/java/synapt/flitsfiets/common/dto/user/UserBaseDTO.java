@@ -1,7 +1,8 @@
 package synapt.flitsfiets.common.dto.user;
 
-import synapt.flitsfiets.common.enums.UserType;
+import lombok.Data;
 
+@Data
 public class UserBaseDTO {
     private Long id;
 
