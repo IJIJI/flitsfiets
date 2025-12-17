@@ -117,7 +117,7 @@ export default function Register() {
             })
     }
 
-    const [selectedAppointment, setSelectedAppointment] = useState(null);
+    // const [selectedAppointment, setSelectedAppointment] = useState(null);
 
     const createAppointment = () => {
         // alert("Creating appointment!");
@@ -154,7 +154,8 @@ export default function Register() {
                 detailsFormValid,
                 contactFormValid,
                 userData.id != 0,
-                selectedAppointment != null
+                false
+                // selectedAppointment != null
             ]}
             blockReturn={[
                 false,
@@ -495,6 +496,9 @@ export default function Register() {
             </FormStep>
             <FormStep>
                 Select Appointment
+                <code>
+                    {appointmentOptions}
+                </code>
             </FormStep>
             <FormStep>
                 All done! You can pick up your bike at (). Don't hesitate to contact us with any questions!
