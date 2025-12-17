@@ -8,11 +8,13 @@ import {MdDirectionsBike, MdElectricBike, MdElectricMoped} from "react-icons/md"
 import PlanCardGrid from "./cards/PlanCardGrid/PlanCardGrid.tsx";
 import PlanCard from "./cards/PlanCardGrid/PlanCard.tsx";
 import {BikeType, type OnboardingData, PlanType} from "../../dto/OnboardingData.tsx";
-
+import Spinner from "../../components/form/loading/Spinner.tsx"
+import type {UserData} from "../../dto/UserData.tsx";
+import { toast } from "react-toastify";
 
 export default function Register() {
 
-    const [currentStep, setCurrentStep] = useState(4);
+    const [currentStep, setCurrentStep] = useState(0);
 
     const [onboardingData, setOnboardingData] = useState<OnboardingData>({
         pickupCity: "",
@@ -74,10 +76,94 @@ export default function Register() {
         setEmailInputValid(input.checkValidity() || input.value.length == 0);
     };
 
+    const [userData, setUserData] = useState<UserData>({
+        id: 0,
+    });
+    const [appointmentOptions, setAppointmentOptions] = useState(null);
+
+
+    const createUser = () => {
+
+        fetch("/api/onboarding", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(onboardingData)
+        })
+            .then(res => {
+                if (res.status != 200)
+                    throw new Error(res.statusText);
+
+                return res.json()
+            })
+            .then(data => {
+                console.log("Data:", data);
+                setUserData(data.user);
+                setAppointmentOptions(data.appointmentOptions);
+            })
+            .catch(err => {
+                console.log("ERROR: ", err);
+                setCurrentStep(4);
+                toast.error("HTTP Error: " + err.message);
+            })
+    }
+
+    const [selectedAppointment, setSelectedAppointment] = useState(null);
+
+    const createAppointment = () => {
+        // alert("Creating appointment!");
+    }
+
+
     return (
         <MultiStepFormContainer
-            titles={["Choose a City", "Our Bikes in " + onboardingData.pickupCity, "Choose Your Plan", "Nice to meet you!", "Lets stay in touch", "Make an Appointment"]}
-            completed={[onboardingData.pickupCity != null, onboardingData.bikeType != BikeType.UNDEFINED, onboardingData.planType != PlanType.UNDEFINED, detailsFormValid, contactFormValid]}
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+            titles={[
+                "Choose a City",
+                "Our Bikes in " + onboardingData.pickupCity,
+                "Choose Your Plan",
+                "Nice to meet you!",
+                "Lets stay in touch",
+                "Welcome "+onboardingData.personal.name+"!",
+                "Make an Appointment",
+                "All Done"
+            ]}
+            buttonText={[
+                "Next",
+                "Next",
+                "Next",
+                "Next",
+                "Create Account",
+                "Make Appointment",
+                "Finish",
+            ]}
+            completed={[
+                onboardingData.pickupCity != null,
+                onboardingData.bikeType != BikeType.UNDEFINED,
+                onboardingData.planType != PlanType.UNDEFINED,
+                detailsFormValid,
+                contactFormValid,
+                userData.id != 0,
+                selectedAppointment != null
+                ]}
+            blockReturn={[
+                false,
+                false,
+                false,
+                false,
+                false,
+                true
+            ]}
+            callback={[
+                null,
+                null,
+                null,
+                null,
+                createUser,
+                createAppointment
+            ]}
         >
             <FormStep>
                 <FormGroup>
@@ -377,7 +463,19 @@ export default function Register() {
                 </Form>
             </FormStep>
             <FormStep>
-                Step 5 Content
+                {userData.id == 0 ?
+                <Spinner>Creating Account...</Spinner>
+                    :
+                <Form>
+                    Welcome to BikeFLash! A confirmation email has been sent to <b className={"px-1"}>{userData.email + "."}</b> Make sure to confirm it.
+                </Form>
+                }
+            </FormStep>
+            <FormStep>
+                Select Appointment
+            </FormStep>
+            <FormStep>
+                All done! You can pick up your bike at (). Don't hesitate to contact us with any questions!
             </FormStep>
         </MultiStepFormContainer>
     );
