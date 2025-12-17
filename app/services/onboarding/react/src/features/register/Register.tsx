@@ -26,13 +26,13 @@ export default function Register() {
 
     });
 
-    const setActiveBike = (index: number) => {
+    const setActiveBike = (index: number | string) => {
         setOnboardingData({
             ...onboardingData,
             bikeType: index as BikeType
         })
     }
-    const setActivePlan = (index: number) => {
+    const setActivePlan = (index: number | string) => {
         setOnboardingData({
             ...onboardingData,
             planType: index as PlanType
@@ -168,7 +168,7 @@ export default function Register() {
                 null,
                 null,
                 null,
-                null,
+                checkPassEqual,
                 createUser,
                 createAppointment
             ]}
@@ -213,28 +213,28 @@ export default function Register() {
             </FormStep>
             <FormStep>
                 <BikeCardGrid>
-                    <BikeCard index={1} activeIndex={onboardingData.bikeType} setIndex={setActiveBike}
+                    <BikeCard index={BikeType.Regular} activeIndex={onboardingData.bikeType} setIndex={setActiveBike}
                               title={"Regular"}
                               description={"Sturdy all-round bike"} startprice={"€19,99"}
                               icon={<MdDirectionsBike/>}/>
-                    <BikeCard index={3} activeIndex={onboardingData.bikeType} setIndex={setActiveBike}
+                    <BikeCard index={BikeType.Electric} activeIndex={onboardingData.bikeType} setIndex={setActiveBike}
                               title={"Electric"}
                               description={"Powerful electric bike that will get you places"} startprice={"€29,99"}
                               icon={<MdElectricBike/>}/>
-                    <BikeCard index={4} activeIndex={onboardingData.bikeType} setIndex={setActiveBike}
+                    <BikeCard index={BikeType.Moped} activeIndex={onboardingData.bikeType} setIndex={setActiveBike}
                               title={"Moped"}
                               description={"Fast electric moped: Never be late again"} startprice={"€39,99"}
                               icon={<MdElectricMoped/>}/>
                 </BikeCardGrid>
             </FormStep>
             <PlanCardGrid>
-                <PlanCard title={"Monthly"} index={1} activeIndex={onboardingData.planType} setIndex={setActivePlan}
+                <PlanCard title={"Monthly"} index={PlanType.Monthly} activeIndex={onboardingData.planType} setIndex={setActivePlan}
                           price={"35,-"}
                 />
-                <PlanCard title={"Yearly"} index={2} activeIndex={onboardingData.planType} setIndex={setActivePlan}
+                <PlanCard title={"Yearly"} index={PlanType.Yearly} activeIndex={onboardingData.planType} setIndex={setActivePlan}
                           price={"35,-"}
                           discountedprice={"29,99"}/>
-                <PlanCard title={"2 Years"} index={3} activeIndex={onboardingData.planType} setIndex={setActivePlan}
+                <PlanCard title={"2 Years"} index={PlanType.BiYearly} activeIndex={onboardingData.planType} setIndex={setActivePlan}
                           price={"35,-"}
                           discountedprice={"19,99"}/>
             </PlanCardGrid>
