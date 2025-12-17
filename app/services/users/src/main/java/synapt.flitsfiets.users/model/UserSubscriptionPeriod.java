@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import synapt.flitsfiets.common.enums.SubscriptionType;
+import synapt.flitsfiets.common.enums.BikeType;
+import synapt.flitsfiets.common.enums.PlanType;
 
 import java.time.Instant;
 
@@ -26,7 +27,12 @@ public class UserSubscriptionPeriod {
 
     //    Should be VO stored in the common library
     @Enumerated(EnumType.STRING)
-    private SubscriptionType subscription;
+    private BikeType bike;
+
+
+    //    Should be VO stored in the common library
+    @Enumerated(EnumType.STRING)
+    private PlanType plan;
 
     @Column(nullable = false)
     private Instant startDate;

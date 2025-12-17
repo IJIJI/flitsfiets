@@ -1,6 +1,7 @@
 package synapt.flitsfiets.common.enums;
 
-public enum SubscriptionType {
+public enum BikeType
+{
     REGULAR,
     ELECTRIC,
     PREMIUM,
