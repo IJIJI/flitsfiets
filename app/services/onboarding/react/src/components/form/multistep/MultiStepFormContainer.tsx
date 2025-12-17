@@ -3,7 +3,7 @@ import FormStep from "./FormStep.tsx";
 import FormContainer from "../FormContainer.tsx";
 import {MdArrowBack} from "react-icons/md";
 
-export default function MultiStepFormContainer({children, titles, completed, callback, blockReturn}: { children: ReactElement<typeof FormStep>[], titles: string[], completed: boolean[], callback: [call:null|(() => void)], blockReturn: boolean[] }) {
+export default function MultiStepFormContainer({children, titles, completed, callback, blockReturn}: { children: ReactElement<typeof FormStep>[], titles: string[], completed: boolean[], callback: Array<null|(() => void)>, blockReturn: boolean[] }) {
 
     const steps = Children.toArray(children);
 
