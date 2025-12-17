@@ -2,7 +2,13 @@ package synapt.flitsfiets.common.enums;
 
 public enum PlanType
 {
-    MONTHLY,
-    YEARLY,
-    BIYEARLY
+    MONTHLY("MONTHLY"),
+    YEARLY("YEARLY"),
+    BIYEARLY("BIYEARLY");
+
+    public final String label;
+
+    private PlanType(String label){
+        this.label = label;
+    }
 }
