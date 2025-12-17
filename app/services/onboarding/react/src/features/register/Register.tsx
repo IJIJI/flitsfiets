@@ -247,6 +247,7 @@ export default function Register() {
                         <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="name">Name:</Label>
                             <Input type="text" name="name" id="name"
+                                   autoComplete={"cc-given-name"}
                                    value={onboardingData.personal.name}
                                    onChange={(event) => {
                                        setOnboardingData({
@@ -263,6 +264,7 @@ export default function Register() {
                             <Label className={"m-0"} for="surname">Surname:</Label>
                             <Input type="text" name="surname" id="surname"
                                    value={onboardingData.personal.surname}
+                                   autoComplete={"cc-family-name"}
                                    onChange={(event) => {
                                        setOnboardingData({
                                            ...onboardingData,
@@ -280,6 +282,7 @@ export default function Register() {
                             <Label className={"m-0"} for="birtdate">Birtddate:</Label>
                             <Input type="date" name="birtdate" id="birtdate"
                                    value={onboardingData.personal.birthdate}
+                                   autoComplete={"bday"}
                                    onChange={(event) => {
                                        setOnboardingData({
                                            ...onboardingData,
@@ -325,6 +328,7 @@ export default function Register() {
                             <Label className={"m-0"} for="postal">Postal Code:</Label>
                             <Input type="text" name="postal" id="postal"
                                    value={onboardingData.address.postalCode}
+                                   autoComplete={"postal-code"}
                                    onChange={(event) => {
                                        setOnboardingData({
                                            ...onboardingData,
@@ -340,6 +344,7 @@ export default function Register() {
                             <Label className={"m-0"} for="streetnumber">House Number:</Label>
                             <Input type="text" name="streetnumber" id="streetnumber"
                                    value={onboardingData.address.streetNumber ? onboardingData.address.streetNumber : ""}
+                                   autoComplete={"postal-code"}
                                    onChange={(event) => {
                                        setOnboardingData({
                                            ...onboardingData,
@@ -356,6 +361,7 @@ export default function Register() {
                         <Label className={"m-0"} for="street">Street:</Label>
                         <Input type="text" name="street" id="street"
                                value={onboardingData.address.street}
+                               autoComplete={"street-address"}
                                onChange={(event) => {
                                    setOnboardingData({
                                        ...onboardingData,
@@ -413,6 +419,7 @@ export default function Register() {
                         <Label className={"m-0"} for="email">Tel:</Label>
                         <Input type="tel" name="telephone" id="telephone"
                                value={onboardingData.contact.telephone}
+                               autoComplete={"tel"}
                                onChange={(event) => {
                                    setOnboardingData({
                                        ...onboardingData,
@@ -429,6 +436,7 @@ export default function Register() {
                         <Input type="email" name="email" id="email"
                                innerRef={emailInputRef}
                                value={onboardingData.contact.email}
+                               autoComplete={"username"}
                                onChange={(event) => {
                                    setOnboardingData({
                                        ...onboardingData,
