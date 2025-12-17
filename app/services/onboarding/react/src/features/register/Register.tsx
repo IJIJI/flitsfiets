@@ -346,6 +346,7 @@ export default function Register() {
                         <Label className={"m-0"} for="password">Password:</Label>
                         <Input id="password" innerRef={passRef}
                                value={onboardingData.contact.password}
+                               autoComplete={"new-password"}
                                onChange={(event) => {
                                    checkPassEqual();
                                    setOnboardingData({
@@ -362,7 +363,10 @@ export default function Register() {
                     <FormGroup>
                         <Label className={"m-0"} for="passwordCheck">Confirm Password:</Label>
                         <Input id="passwordCheck" innerRef={passCheckRef} type="password"
-                               name="passwordcheck" invalid={!passwordsMatch} onChange={checkPassEqual}
+                               name="passwordcheck"
+                               invalid={!passwordsMatch}
+                               onChange={checkPassEqual}
+                               autoComplete={"new-password"}
                                required/>
                         <FormFeedback invalid={"true"}>
                             Passwords do not match.
