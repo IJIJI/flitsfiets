@@ -23,6 +23,21 @@
         <module>services/appointments</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>3.2.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.modelmapper.extensions</groupId>
+                <artifactId>modelmapper-spring</artifactId>
+                <version>3.2.6</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
     <profiles>
         <profile>
