@@ -145,8 +145,8 @@ export default function Register() {
             <FormStep>
                 <Form innerRef={detailsFormRef} onInput={updateDetailsFormValidity}
                       onChange={updateDetailsFormValidity}>
-                    <Col className={"d-flex flex-row gap-2 p-0 m-0"}>
-                        <FormGroup className={"col-6"}>
+                    <Col className={"d-flex flex-row p-0 m-0"}>
+                        <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="name">Name:</Label>
                             <Input type="text" name="name" id="name"
                                    value={onboardingData.personal.name}
@@ -161,7 +161,7 @@ export default function Register() {
                                    }}
                                    required/>
                         </FormGroup>
-                        <FormGroup className={"col-6"}>
+                        <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="surname">Surname:</Label>
                             <Input type="text" name="surname" id="surname"
                                    value={onboardingData.personal.surname}
@@ -177,8 +177,8 @@ export default function Register() {
                                    required/>
                         </FormGroup>
                     </Col>
-                    <Col className={"d-flex flex-row gap-2 p-0 m-0"}>
-                        <FormGroup className={"col-6"}>
+                    <Col className={"d-flex flex-row p-0 m-0"}>
+                        <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="birtdate">Birtddate:</Label>
                             <Input type="date" name="birtdate" id="birtdate"
                                    value={onboardingData.personal.birthdate}
@@ -193,7 +193,7 @@ export default function Register() {
                                    }}
                                    required/>
                         </FormGroup>
-                        <FormGroup className={"col-6"}>
+                        <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="length">Length:</Label>
                             <InputGroup>
                                 <Input type="number" name="length" min={100} max={230} id="length"
@@ -217,8 +217,8 @@ export default function Register() {
                     </Col>
                     <h4>Address Details</h4>
 
-                    <Col className={"d-flex flex-row gap-2 p-0 m-0"}>
-                        <FormGroup className={"col-6"}>
+                    <Col className={"d-flex flex-row p-0 m-0"}>
+                        <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="postal">Postal Code:</Label>
                             <Input type="text" name="postal" id="postal"
                                    value={onboardingData.address.postalCode}
@@ -233,7 +233,7 @@ export default function Register() {
                                    }}
                                    required/>
                         </FormGroup>
-                        <FormGroup className={"col-6"}>
+                        <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="streetnumber">House Number:</Label>
                             <Input type="text" name="streetnumber" id="streetnumber"
                                    value={onboardingData.address.streetNumber ? onboardingData.address.streetNumber : ""}
@@ -264,8 +264,8 @@ export default function Register() {
                                }}
                                required/>
                     </FormGroup>
-                    <Col className={"d-flex flex-row gap-2 p-0 m-0"}>
-                        {/*<FormGroup className={"col-6"}>*/}
+                    <Col className={"d-flex flex-row p-0 m-0"}>
+                        {/*<FormGroup className={"col-6 px-1"}>*/}
                         {/*    <Label className={"m-0"} for="numberaddition">Addition:</Label>*/}
                         {/*    <Input type="text" name="numberaddition" id="numberaddition"*/}
                         {/*           value={onboardingData.address.numberAddition}*/}
@@ -280,9 +280,9 @@ export default function Register() {
                         {/*           }}*/}
                         {/*    />*/}
                         {/*</FormGroup>*/}
-                        <FormGroup className={"col-6"}>
+                        <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="city">City:</Label>
-                            <Input type="text" name="city" id="city" defaultValue={onboardingData.pickupCity ?? ""}
+                            <Input type="text" name="city" id="city"
                                    value={onboardingData.address.city != "" ? onboardingData.address.city : onboardingData.pickupCity}
                                    onChange={(event) => {
                                        setOnboardingData({
@@ -295,9 +295,9 @@ export default function Register() {
                                    }}
                                    required/>
                         </FormGroup>
-                        <FormGroup>
+                        <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="country">Country:</Label>
-                            <Input type="text" name="country" id="country" value={"The Netherlands"} disabled/>
+                            <Input type="text" name="country" id="country" value={"The Netherlands"}  disabled/>
                         </FormGroup>
                     </Col>
 
