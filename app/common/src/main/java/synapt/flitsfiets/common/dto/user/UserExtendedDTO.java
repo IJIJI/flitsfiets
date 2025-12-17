@@ -5,6 +5,5 @@ import synapt.flitsfiets.common.enums.UserType;
 
 public class UserExtendedDTO extends UserBaseDTO{
 
-    private UserType type;
     private SubscriptionType activeSubscription;
 }
