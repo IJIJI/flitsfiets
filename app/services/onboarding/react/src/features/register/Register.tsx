@@ -12,6 +12,8 @@ import {BikeType, type OnboardingData, PlanType} from "../../dto/OnboardingData.
 
 export default function Register() {
 
+    const [currentStep, setCurrentStep] = useState(4);
+
     const [onboardingData, setOnboardingData] = useState<OnboardingData>({
         pickupCity: "",
         bikeType: BikeType.UNDEFINED,
