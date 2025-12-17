@@ -3,7 +3,25 @@ import FormStep from "./FormStep.tsx";
 import FormContainer from "../FormContainer.tsx";
 import {MdArrowBack} from "react-icons/md";
 
-export default function MultiStepFormContainer({children, currentStep, setCurrentStep, titles, completed, callback, blockReturn}: { children: ReactElement<typeof FormStep>[], currentStep: number, setCurrentStep: (newStep: number) => void, titles: string[], completed: boolean[], callback: Array<null|(() => void)>, blockReturn: boolean[] }) {
+export default function MultiStepFormContainer({
+                                                   children,
+                                                   currentStep,
+                                                   setCurrentStep,
+                                                   titles,
+                                                   completed,
+                                                   callback,
+                                                   blockReturn,
+                                                   buttonText
+                                               }: {
+    children: ReactElement<typeof FormStep>[],
+    currentStep: number,
+    setCurrentStep: (newStep: number) => void,
+    titles: string[],
+    completed: boolean[],
+    callback: Array<null | (() => void)>,
+    blockReturn: boolean[],
+    buttonText: string[]
+}) {
 
     const steps = Children.toArray(children);
 
@@ -22,20 +40,22 @@ export default function MultiStepFormContainer({children, currentStep, setCurren
             <div className="header">
                 <h1>{titles[currentStep]}</h1>
                 <div className="progressBar">
-                    <div className="progress" style={{width: currentStep/steps.length*100+"%"}}></div>
+                    <div className="progress" style={{width: currentStep / steps.length * 100 + "%"}}></div>
                 </div>
             </div>
             <div className="stepContent">
                 {children[currentStep]}
             </div>
             <div className="footer d-flex justify-content-between">
-                <div className={"backContainer "+(!(currentStep > 0) || blockReturn[currentStep] ? "hidden" : "")}>
-                    <button className="btn btn-secondary" onClick={() => setCurrentStep(currentStep - 1)} disabled={!(currentStep > 0)}><MdArrowBack /></button>
+                <div className={"backContainer " + (!(currentStep > 0) || blockReturn[currentStep] ? "hidden" : "")}>
+                    <button className="btn btn-secondary" onClick={() => setCurrentStep(currentStep - 1)}
+                            disabled={!(currentStep > 0)}><MdArrowBack/></button>
                 </div>
                 {currentStep < steps.length - 1 ?
-                    <button className="btn btn-primary w-100" onClick={() => nextstep()} disabled={!(completed[currentStep])}>Next</button>
+                    <button className="btn btn-primary w-100" onClick={() => nextstep()}
+                            disabled={!(completed[currentStep])}>{buttonText[currentStep]}</button>
                     :
-                    <button className="btn btn-primary w-100" type="submit">Submit</button>
+                    <button className="btn btn-primary w-100" type="submit">{buttonText[currentStep]}</button>
                 }
             </div>
         </FormContainer>
