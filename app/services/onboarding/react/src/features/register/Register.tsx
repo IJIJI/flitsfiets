@@ -145,6 +145,7 @@ export default function Register() {
                 "Next",
                 "Create Account",
                 "Make Appointment",
+                "Claim Slot",
                 "Finish",
             ]}
             completed={[
@@ -162,6 +163,8 @@ export default function Register() {
                 false,
                 false,
                 false,
+                false,
+                true,
                 false,
                 true
             ]}
