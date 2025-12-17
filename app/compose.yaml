@@ -8,8 +8,7 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: app
       RABBITMQ_DEFAULT_PASS: secret
-    networks:
-      - internal
+    networks: [ internal ]
   caddy:
     image: caddy:2-alpine
     restart: unless-stopped
@@ -20,8 +19,7 @@ services:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddydata:/data
       - caddyconfig:/config
-    networks:
-      - internal
+    networks: [ edge, internal ]
     profiles: [ dev, prod ]
 
 #  keycloak:
@@ -73,6 +71,7 @@ services:
     volumes:
       # This is where smtp4dev stores the database...
       - smtp4dev-data:/smtp4dev
+    networks: [ internal ]
     environment:
       #Specifies the URLs the web UI will use inside the container.
       - ServerOptions__Urls=http://*:80
@@ -98,18 +97,14 @@ services:
 
   service-onboarding:
     image: 'ff-onboarding:latest'
-    ports:
-      - "8090:8010"
     restart: unless-stopped
-    networks:
-      - internal
+    networks: [ edge, internal ]
     profiles: [ prod ]
 
   service-frontend:
     image: 'ff-frontend:latest'
     restart: unless-stopped
-    networks:
-      - internal
+    networks: [ edge, internal ]
     profiles: [ prod ]
 
   service-users:
@@ -118,8 +113,7 @@ services:
 #      postgres:
 #        condition: service_started
     restart: unless-stopped
-    networks:
-      - internal
+    networks: [ internal ]
     profiles: [ prod ]
 
   service-appointments:
@@ -128,12 +122,14 @@ services:
 #      postgres:
 #        condition: service_started
     restart: unless-stopped
-    networks:
-      - internal
+    networks: [ internal ]
     profiles: [ prod ]
 
 networks:
   internal:
+    external: false
+    driver: bridge
+  edge:
     external: false
     driver: bridge
 
