@@ -6,7 +6,6 @@ public class UserBaseDTO {
     private Long id;
 
     private String name;
-    private String surname;
 
-    private UserType type;
+    private String email;
 }
