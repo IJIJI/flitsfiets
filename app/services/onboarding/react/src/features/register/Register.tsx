@@ -10,7 +10,7 @@ import PlanCard from "./cards/PlanCardGrid/PlanCard.tsx";
 import {BikeType, type OnboardingData, PlanType} from "../../dto/OnboardingData.tsx";
 import Spinner from "../../components/form/loading/Spinner.tsx"
 import type {UserData} from "../../dto/UserData.tsx";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 
 export default function Register() {
 
@@ -37,6 +37,16 @@ export default function Register() {
             ...onboardingData,
             planType: index as PlanType
         })
+    }
+
+    const lenghtInputRef = createRef<HTMLInputElement>();
+    const [lengthInputValid, setLengthInputValid] = useState(true);
+
+    const updateLengthInputValidity = () => {
+        const input = lenghtInputRef.current;
+        if (!input) return;
+        console.log(input.value);
+        setLengthInputValid(input.checkValidity());
     }
 
 
@@ -70,7 +80,7 @@ export default function Register() {
         setContactFormValid(form.checkValidity());
     };
 
-    const updateEmailInoutValidity = () => {
+    const updateEmailInputValidity = () => {
         const input = emailInputRef.current;
         if (!input) return;
         setEmailInputValid(input.checkValidity() || input.value.length == 0);
@@ -126,7 +136,7 @@ export default function Register() {
                 "Choose Your Plan",
                 "Nice to meet you!",
                 "Lets stay in touch",
-                "Welcome "+onboardingData.personal.name+"!",
+                "Welcome " + onboardingData.personal.name + "!",
                 "Make an Appointment",
                 "All Done"
             ]}
@@ -140,14 +150,14 @@ export default function Register() {
                 "Finish",
             ]}
             completed={[
-                onboardingData.pickupCity != null,
+                onboardingData.pickupCity != null && onboardingData.pickupCity != "",
                 onboardingData.bikeType != BikeType.UNDEFINED,
                 onboardingData.planType != PlanType.UNDEFINED,
                 detailsFormValid,
                 contactFormValid,
                 userData.id != 0,
                 selectedAppointment != null
-                ]}
+            ]}
             blockReturn={[
                 false,
                 false,
@@ -286,6 +296,7 @@ export default function Register() {
                             <InputGroup>
                                 <Input type="number" name="length" min={100} max={230} id="length"
                                        value={onboardingData.personal.length != 0 ? onboardingData.personal.length : ""}
+                                       innerRef={lenghtInputRef}
                                        onChange={(event) => {
                                            setOnboardingData({
                                                ...onboardingData,
@@ -294,12 +305,16 @@ export default function Register() {
                                                    length: event.target.value as any as number
                                                }
                                            });
+                                           updateLengthInputValidity();
                                        }}
+                                       invalid={!lengthInputValid}
                                        required/>
-
                                 <InputGroupText>
                                     cm
                                 </InputGroupText>
+                                <FormFeedback invalid={"true"}>
+                                    We only support lengths between 100 and 230 cm
+                                </FormFeedback>
                             </InputGroup>
                         </FormGroup>
                     </Col>
@@ -385,7 +400,7 @@ export default function Register() {
                         </FormGroup>
                         <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="country">Country:</Label>
-                            <Input type="text" name="country" id="country" value={"The Netherlands"}  disabled/>
+                            <Input type="text" name="country" id="country" value={"The Netherlands"} disabled/>
                         </FormGroup>
                     </Col>
 
@@ -422,7 +437,7 @@ export default function Register() {
                                            email: event.target.value
                                        }
                                    });
-                                   updateEmailInoutValidity();
+                                   updateEmailInputValidity();
                                }}
                                invalid={!emailInputValid}
                                required/>
@@ -464,11 +479,12 @@ export default function Register() {
             </FormStep>
             <FormStep>
                 {userData.id == 0 ?
-                <Spinner>Creating Account...</Spinner>
+                    <Spinner>Creating Account...</Spinner>
                     :
-                <Form>
-                    Welcome to BikeFLash! A confirmation email has been sent to <b className={"px-1"}>{userData.email + "."}</b> Make sure to confirm it.
-                </Form>
+                    <Form>
+                        Welcome to BikeFLash! A confirmation email has been sent to <b
+                        className={"px-1"}>{userData.email + "."}</b> Make sure to confirm it.
+                    </Form>
                 }
             </FormStep>
             <FormStep>
