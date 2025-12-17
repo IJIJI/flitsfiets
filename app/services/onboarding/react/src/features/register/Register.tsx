@@ -45,7 +45,6 @@ export default function Register() {
     const updateLengthInputValidity = () => {
         const input = lenghtInputRef.current;
         if (!input) return;
-        console.log(input.value);
         setLengthInputValid(input.checkValidity());
     }
 
@@ -108,7 +107,6 @@ export default function Register() {
                 return res.json()
             })
             .then(data => {
-                console.log("Data:", data);
                 setUserData(data.user);
                 setAppointmentOptions(data.appointmentOptions);
             })
@@ -416,7 +414,7 @@ export default function Register() {
                 <Form innerRef={contactFormRef} onInput={updateContactFormValidity}
                       onChange={updateContactFormValidity}>
                     <FormGroup>
-                        <Label className={"m-0"} for="email">Tel:</Label>
+                        <Label className={"m-0"} for="telephone">Tel:</Label>
                         <Input type="tel" name="telephone" id="telephone"
                                value={onboardingData.contact.telephone}
                                autoComplete={"tel"}
