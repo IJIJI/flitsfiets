@@ -2,7 +2,7 @@
 
 export interface UserData {
     id: number;
-    name: string;
-    email: string;
-    activeSubscription: string;
+    name?: string;
+    email?: string;
+    activeSubscription?: string;
 }
