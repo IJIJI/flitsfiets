@@ -107,8 +107,8 @@
 <!--                    </execution>-->
 <!--                </executions>-->
                 <configuration>
-                    <jmxPort>9101</jmxPort>
-                    <imageName>ff-onboarding</imageName>
+                    <jmxPort>9102</jmxPort>
+                    <imageName>ff-users</imageName>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>

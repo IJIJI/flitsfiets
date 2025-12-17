@@ -158,8 +158,8 @@
 <!--                    </execution>-->
 <!--                </executions>-->
                 <configuration>
-                    <jmxPort>9101</jmxPort>
-                    <imageName>ff-onboarding</imageName>
+                    <jmxPort>9100</jmxPort>
+                    <imageName>ff-frontend</imageName>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
