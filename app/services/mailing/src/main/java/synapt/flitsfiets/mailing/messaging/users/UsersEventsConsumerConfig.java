@@ -48,7 +48,7 @@ public class UsersEventsConsumerConfig {
         var classMapper = new DefaultClassMapper();
         classMapper.setTrustedPackages(
                 "synapt.flitsfiets.common.events",
-                "synapt.flitsfiets.common.events.users", // if your event payloads live there for now
+                "synapt.flitsfiets.common.events.users",
                 "synapt.flitsfiets.common.dto"
         );
         converter.setClassMapper(classMapper);
