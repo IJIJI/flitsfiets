@@ -21,6 +21,7 @@
         <module>services/onboarding</module>
         <module>services/users</module>
         <module>services/appointments</module>
+        <module>services/mailing</module>
     </modules>
 
     <dependencyManagement>
