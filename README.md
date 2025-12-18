@@ -16,6 +16,7 @@ These are the following services:
 - Appointments: Manages all appointments.
 - Subscriptions: Manages sunscription plans and user subscriptions.
 - Fleet: Manages the fleet of bikes, including loaner bikes.
+- Mailing: Manages mailing to users.
 - Authentication: Handles authentication and authorization using JWT tokens.
 
 
