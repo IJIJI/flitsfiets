@@ -2,6 +2,6 @@ package synapt.flitsfiets.common.events.users;
 
 import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 
-public record UserOnboarded (
+public record UserCreated (
     UserExtendedDTO user
 ) {}
