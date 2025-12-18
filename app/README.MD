@@ -22,13 +22,13 @@ You can then run the services using:
 You can also run multiple services at once:
 
 ```bash
-./mvnw spring-boot:start -pl services/frontend,services/onboarding,services/users,services/appointments -Pdev
+./mvnw spring-boot:start -pl services/frontend,services/onboarding,services/users,services/appointments,services/mailing -Pdev
 ```
 
 They can then be stopped by running:
 
 ```bash
-./mvnw spring-boot:stop -pl services/frontend,services/onboarding,services/users,services/appointments
+./mvnw spring-boot:stop -pl services/frontend,services/onboarding,services/users,services/appointments,services/mailing -Pdev
 ```
 
 > [!TIP]
