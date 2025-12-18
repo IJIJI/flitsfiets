@@ -17,6 +17,7 @@
         </processorPath>
         <module name="onboarding" />
         <module name="appointments" />
+        <module name="mailing" />
         <module name="common" />
         <module name="frontend" />
         <module name="users" />
@@ -33,6 +34,7 @@
       <module name="common" options="-parameters" />
       <module name="frontend" options="-parameters" />
       <module name="frontend (1)" options="-parameters" />
+      <module name="mailing" options="-parameters" />
       <module name="onboarding" options="-parameters" />
       <module name="subscriptions" options="-parameters" />
       <module name="users" options="-parameters" />
