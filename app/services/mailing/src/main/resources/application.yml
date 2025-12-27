@@ -19,8 +19,8 @@ spring:
     console:
       enabled: true
   mail:
-    host: ${SMTP_HOST:smtp4dev}
-    port: ${SMTP_PORT:587}
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:25}
     username: ${SMTP_USERNAME:admin}
     password: ${SMTP_PASSWORD:admin}
     senderMail: "BikeFlash <info@flitsfiets.nl>"
