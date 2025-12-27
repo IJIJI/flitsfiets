@@ -1,14 +1,12 @@
 package synapt.flitsfiets.onboarding.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestClient;
 import synapt.flitsfiets.common.dto.subscriptionPeriod.SubscriptionPeriodBaseDTO;
 import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
-import synapt.flitsfiets.common.dto.user.UserFullDTO;
+import synapt.flitsfiets.common.dto.user.UserFullPasswordDTO;
 import synapt.flitsfiets.common.dto.user.creation.UserCreationDTO;
 import synapt.flitsfiets.common.enums.BikeType;
 import synapt.flitsfiets.common.enums.PlanType;
@@ -37,7 +35,7 @@ public class OnboardingController {
         System.out.println(requestedUser);
 
 
-        UserFullDTO fullUser = new UserFullDTO();
+        UserFullPasswordDTO fullUser = new UserFullPasswordDTO();
         fullUser.setName(requestedUser.getPersonal().getName());
         fullUser.setSurname(requestedUser.getPersonal().getSurname());
         fullUser.setEmail(requestedUser.getContact().getEmail());
@@ -50,6 +48,7 @@ public class OnboardingController {
                 requestedUser.getAddress().getPostalCode(),
                 requestedUser.getAddress().getCountry()
         ));
+        fullUser.setPassword(requestedUser.getContact().getPassword());
 
         usersService.onBoardUser(fullUser);
 
