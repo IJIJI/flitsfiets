@@ -23,6 +23,7 @@ spring:
     port: ${SMTP_PORT:587}
     username: ${SMTP_USERNAME:admin}
     password: ${SMTP_PASSWORD:admin}
+    senderMail: "BikeFlash <info@flitsfiets.nl>"
     properties:
       mail:
         smtp:
