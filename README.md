@@ -26,6 +26,7 @@ These are the following services:
 - Subscriptions: Manages sunscription plans and user subscriptions.
 - Fleet: Manages the fleet of bikes, including loaner bikes.
 - Mailing: Manages mailing to users.
+- Maintenance: Tracks bike maintenance and hosts the maintenance portal.
 - Authentication: Handles authentication and authorization using JWT tokens.
 
 ### Communication
