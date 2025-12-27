@@ -11,8 +11,11 @@ import {BikeType, type OnboardingData, PlanType} from "../../dto/OnboardingData.
 import Spinner from "../../components/form/loading/Spinner.tsx"
 import type {UserData} from "../../dto/UserData.tsx";
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router";
 
 export default function Register() {
+
+    const navigate = useNavigate();
 
     const [currentStep, setCurrentStep] = useState(0);
 
@@ -101,7 +104,11 @@ export default function Register() {
             body: JSON.stringify(onboardingData)
         })
             .then(res => {
-                if (res.status != 200)
+                if (res.status == 409) {
+                    navigate("/login");
+                    throw new Error("This email is already used. Please login.");
+                }
+                else if (res.status != 200)
                     throw new Error(res.statusText);
 
                 return res.json()
@@ -113,7 +120,7 @@ export default function Register() {
             .catch(err => {
                 console.log("ERROR: ", err);
                 setCurrentStep(4);
-                toast.error("HTTP Error: " + err.message);
+                toast.error(err.message);
             })
     }
 
@@ -164,7 +171,8 @@ export default function Register() {
                 false,
                 false,
                 false,
-                true,
+                // true,
+                false,
                 false,
                 true
             ]}
