@@ -29,11 +29,7 @@ public class UserController {
             throw new DuplicateKeyException("A user already exists by that email address!");
         }
 
-        UserExtendedDTO newUser = userService.createUser(requestedUser);
-
-        System.out.println("User Created in USER SERVICE:");
-        System.out.println(newUser);
-        return newUser;
+        return userService.createUser(requestedUser);
     }
 
 }
