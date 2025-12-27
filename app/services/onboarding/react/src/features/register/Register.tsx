@@ -171,8 +171,7 @@ export default function Register() {
                 false,
                 false,
                 false,
-                // true,
-                false,
+                true,
                 false,
                 true
             ]}
