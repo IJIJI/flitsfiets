@@ -40,4 +40,8 @@ public class UserService
         return createdDTO;
     }
 
+    public boolean emailExists(String email)
+    {
+        return userRepository.existsByEmail(email);
+    }
 }
