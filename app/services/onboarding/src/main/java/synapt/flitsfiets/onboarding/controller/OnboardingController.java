@@ -1,9 +1,11 @@
 package synapt.flitsfiets.onboarding.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClient;
 import synapt.flitsfiets.common.dto.subscriptionPeriod.SubscriptionPeriodBaseDTO;
 import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 import synapt.flitsfiets.common.dto.user.UserFullDTO;
@@ -12,6 +14,7 @@ import synapt.flitsfiets.common.enums.BikeType;
 import synapt.flitsfiets.common.enums.PlanType;
 import synapt.flitsfiets.common.enums.UserType;
 import synapt.flitsfiets.common.valueObject.UserAddress;
+import synapt.flitsfiets.onboarding.service.UsersService;
 
 import java.time.Instant;
 import java.util.HashMap;
@@ -21,8 +24,13 @@ import java.util.Map;
 @RequestMapping("/api/onboarding")
 public class OnboardingController {
 
+    private final UsersService usersService;
+
+    public OnboardingController(UsersService usersService) {
+        this.usersService = usersService;
+    }
+
     @PostMapping
-//    @GetMapping
     public Map<String, Object> onboardUser(@RequestBody UserCreationDTO requestedUser) {
 
         System.out.println("User Requested:");
@@ -42,6 +50,8 @@ public class OnboardingController {
                 requestedUser.getAddress().getPostalCode(),
                 requestedUser.getAddress().getCountry()
         ));
+
+        usersService.onBoardUser(fullUser);
 
         SubscriptionPeriodBaseDTO plan = new SubscriptionPeriodBaseDTO();
         plan.setPlan(requestedUser.getPlanType());
