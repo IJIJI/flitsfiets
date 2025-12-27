@@ -4,17 +4,13 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import synapt.flitsfiets.common.dto.subscriptionPeriod.SubscriptionPeriodBaseDTO;
 import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 import synapt.flitsfiets.common.dto.user.UserFullPasswordDTO;
 import synapt.flitsfiets.common.dto.user.creation.UserCreationDTO;
-import synapt.flitsfiets.common.enums.BikeType;
-import synapt.flitsfiets.common.enums.PlanType;
 import synapt.flitsfiets.common.enums.UserType;
 import synapt.flitsfiets.common.valueObject.UserAddress;
 import synapt.flitsfiets.onboarding.service.UserService;
 
-import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,10 +32,6 @@ public class OnboardingController {
     @PostMapping
     public Map<String, Object> onboardUser(@RequestBody UserCreationDTO requestedUser) {
 
-        System.out.println("User Requested:");
-        System.out.println(requestedUser);
-
-
         UserFullPasswordDTO fullUser = new UserFullPasswordDTO();
         fullUser.setName(requestedUser.getPersonal().getName());
         fullUser.setSurname(requestedUser.getPersonal().getSurname());
@@ -54,23 +46,15 @@ public class OnboardingController {
                 requestedUser.getAddress().getCountry()
         ));
         fullUser.setPassword(requestedUser.getContact().getPassword());
+        fullUser.setActiveBikeType(requestedUser.getBikeType());
+        fullUser.setActivePlanType(requestedUser.getPlanType());
 
-        userService.onBoardUser(fullUser);
+        UserExtendedDTO newUser = userService.onBoardUser(fullUser);
 
-        SubscriptionPeriodBaseDTO plan = new SubscriptionPeriodBaseDTO();
-        plan.setPlan(requestedUser.getPlanType());
-        plan.setBike(requestedUser.getBikeType());
-        plan.setStartDate(Instant.now());
-
+        System.out.println("User Created:");
+        System.out.println(newUser);
 
         Map<String, Object> result = new HashMap<>();
-
-        UserExtendedDTO newUser = new UserExtendedDTO();
-        newUser.setId(123L);
-        newUser.setName("Eik");
-        newUser.setEmail("eik@test.com");
-        newUser.setActiveBikeType(BikeType.ELECTRIC);
-        newUser.setActivePlanType(PlanType.MONTHLY);
 
         result.put("user", newUser);
 
