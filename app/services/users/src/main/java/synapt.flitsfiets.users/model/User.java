@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import synapt.flitsfiets.common.enums.UserType;
 import synapt.flitsfiets.common.valueObject.UserAddress;
+import synapt.flitsfiets.users.converter.UserAddressAttributeConverter;
 
 import java.time.Instant;
 import java.util.List;
@@ -44,7 +43,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @JdbcTypeCode(SqlTypes.JSON)
+    @Convert(converter = UserAddressAttributeConverter.class)
+    @Column(columnDefinition = "CLOB")
     private UserAddress address;
 
 //    Should be role based. No security implemented. For now, just a simple enum.
