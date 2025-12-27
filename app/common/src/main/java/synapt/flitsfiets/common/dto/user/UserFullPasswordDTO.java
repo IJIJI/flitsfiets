@@ -2,11 +2,11 @@ package synapt.flitsfiets.common.dto.user;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import synapt.flitsfiets.common.enums.UserType;
-import synapt.flitsfiets.common.valueObject.UserAddress;
+import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@ToString(callSuper = true)
 public class UserFullPasswordDTO extends UserFullDTO{
     private String password;
 }
