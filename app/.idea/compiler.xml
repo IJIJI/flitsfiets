@@ -17,8 +17,8 @@
         </processorPath>
         <module name="onboarding" />
         <module name="appointments" />
-        <module name="mailing" />
         <module name="common" />
+        <module name="mailing" />
         <module name="frontend" />
         <module name="users" />
       </profile>
