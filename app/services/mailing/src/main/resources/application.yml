@@ -18,6 +18,17 @@ spring:
   h2:
     console:
       enabled: true
+  mail:
+    host: ${SMTP_HOST:smtp4dev}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:admin}
+    password: ${SMTP_PASSWORD:admin}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 server:
   port: 6002
