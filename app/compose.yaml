@@ -20,7 +20,7 @@ services:
       - caddydata:/data
       - caddyconfig:/config
     networks: [ edge, internal ]
-    profiles: [ dev, prod ]
+    profiles: [ prod ]
 
 #  keycloak:
 #    container_name: baeldung-keycloak.openid-provider
