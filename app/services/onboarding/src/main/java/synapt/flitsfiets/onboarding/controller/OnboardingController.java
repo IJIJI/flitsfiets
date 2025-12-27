@@ -1,9 +1,9 @@
 package synapt.flitsfiets.onboarding.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import synapt.flitsfiets.common.dto.subscriptionPeriod.SubscriptionPeriodBaseDTO;
 import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 import synapt.flitsfiets.common.dto.user.UserFullPasswordDTO;
@@ -26,6 +26,11 @@ public class OnboardingController {
 
     public OnboardingController(UserService userService) {
         this.userService = userService;
+    }
+
+    @ExceptionHandler(DuplicateKeyException.class)
+    public ResponseEntity<String> unauthorized() {
+        return new ResponseEntity<>("A user already exists by that email address!", HttpStatus.CONFLICT);
     }
 
     @PostMapping

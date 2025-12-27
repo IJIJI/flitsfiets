@@ -19,7 +19,7 @@ public class UserController {
 
     @ExceptionHandler(DuplicateKeyException.class)
     public ResponseEntity<String> unauthorized() {
-        return new ResponseEntity<>("A user already exists by that email address!", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("A user already exists by that email address!", HttpStatus.CONFLICT);
     }
 
     @PostMapping
