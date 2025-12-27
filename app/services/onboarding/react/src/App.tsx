@@ -4,6 +4,7 @@ import Home from "./features/home/Home.tsx";
 import Register from "./features/register/Register.tsx";
 import "./app.less";
 import {ToastContainer} from "react-toastify";
+import Login from "./features/register/Login.tsx";
 
 export default function App() {
 
@@ -17,6 +18,7 @@ export default function App() {
                     </Route>
                     <Route element={<Base/>}>
                         <Route path="/register" element={<Register/>}/>
+                        <Route path="/login" element={<Login/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>
