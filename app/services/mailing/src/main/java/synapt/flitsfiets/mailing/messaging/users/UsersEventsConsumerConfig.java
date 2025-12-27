@@ -4,7 +4,8 @@ import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.DefaultClassMapper;
+import org.springframework.amqp.support.converter.DefaultJacksonJavaTypeMapper;
+import org.springframework.amqp.support.converter.JacksonJavaTypeMapper;
 import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,13 +48,24 @@ public class UsersEventsConsumerConfig
         var converter = new JacksonJsonMessageConverter();
 
         // Security: only allow your packages for deserialization
-        var classMapper = new DefaultClassMapper();
-        classMapper.setTrustedPackages(
+//        var classMapper = new DefaultClassMapper();
+//        classMapper.setTrustedPackages(
+//                "synapt.flitsfiets.common.events",
+//                "synapt.flitsfiets.common.events.users",
+//                "synapt.flitsfiets.common.dto"
+//        );
+//        converter.setClassMapper(classMapper);
+
+        var typeMapper = new DefaultJacksonJavaTypeMapper();
+        typeMapper.setTrustedPackages(
                 "synapt.flitsfiets.common.events",
                 "synapt.flitsfiets.common.events.users",
                 "synapt.flitsfiets.common.dto"
         );
-        converter.setClassMapper(classMapper);
+
+        // Use the @RabbitListener method signature (EventEnvelope<UserCreated>) as the target type
+        typeMapper.setTypePrecedence(JacksonJavaTypeMapper.TypePrecedence.INFERRED);
+        converter.setJavaTypeMapper(typeMapper);
 
         return converter;
     }
