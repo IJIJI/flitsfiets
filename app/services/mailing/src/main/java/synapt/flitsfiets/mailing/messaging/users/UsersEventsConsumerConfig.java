@@ -10,38 +10,40 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class UsersEventsConsumerConfig {
+public class UsersEventsConsumerConfig
+{
 
 
     public static final String USERS_EVENTS_EXCHANGE = "ff.users.events";
-
-//    Mailing owned queue for user created events
-    public static final String Q_MAILING_USERS_CREATED = "ff.mailing.q.users.created";
-
-//    Routing key for user created events
-    public static final String Q_USERS_CREATED = "users.user.created";
+    public static final String RK_USER_CREATED = "users.user.created.v1";
+    //    Mailing owned queue for user created events
+    public static final String Q_USER_CREATED = "ff.mailing.q.users.created";
 
 
     @Bean
-    public TopicExchange usersEventsExchange() {
+    public TopicExchange usersEventsExchange()
+    {
         return ExchangeBuilder.topicExchange(USERS_EVENTS_EXCHANGE).durable(true).build();
     }
 
     @Bean
-    public Queue usersCreatedQueue() {
-        return QueueBuilder.durable(Q_MAILING_USERS_CREATED).build();
+    public Queue usersCreatedQueue()
+    {
+        return QueueBuilder.durable(Q_USER_CREATED).build();
     }
 
     @Bean
-    public Binding bindUsersCreated(Queue mailingUsersCreatedQueue, TopicExchange usersEventsExchange) {
+    public Binding bindUsersCreated(Queue mailingUsersCreatedQueue, TopicExchange usersEventsExchange)
+    {
         return BindingBuilder
                 .bind(mailingUsersCreatedQueue)
                 .to(usersEventsExchange)
-                .with(Q_USERS_CREATED);
+                .with(RK_USER_CREATED);
     }
 
     @Bean
-    public JacksonJsonMessageConverter jacksonJsonMessageConverter() {
+    public JacksonJsonMessageConverter jacksonJsonMessageConverter()
+    {
         var converter = new JacksonJsonMessageConverter();
 
         // Security: only allow your packages for deserialization
@@ -60,7 +62,8 @@ public class UsersEventsConsumerConfig {
     public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
             ConnectionFactory connectionFactory,
             JacksonJsonMessageConverter converter
-    ) {
+    )
+    {
         var factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         factory.setMessageConverter(converter);
@@ -73,7 +76,8 @@ public class UsersEventsConsumerConfig {
 
     // Optional: only needed if THIS service also publishes
     @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory cf, JacksonJsonMessageConverter converter) {
+    public RabbitTemplate rabbitTemplate(ConnectionFactory cf, JacksonJsonMessageConverter converter)
+    {
         var template = new RabbitTemplate(cf);
         template.setMessageConverter(converter);
         return template;

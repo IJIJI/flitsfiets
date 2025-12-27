@@ -21,13 +21,13 @@ public class UsersEventPublisher {
         var envelope = new EventEnvelope<>(
                 UUID.randomUUID(),
                 Instant.now(),
-                "users.user-created.v1",
+                UsersMessagingConfig.RK_USER_CREATED,
                 event
         );
 
         rabbitTemplate.convertAndSend(
                 UsersMessagingConfig.USERS_EVENTS_EXCHANGE,
-                "users.user.created",
+                UsersMessagingConfig.RK_USER_CREATED,
                 envelope
         );
     }

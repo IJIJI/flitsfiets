@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class UsersMessagingConfig {
 
     public static final String USERS_EVENTS_EXCHANGE = "ff.users.events";
+    public static final String RK_USER_CREATED = "users.user.created.v1";
 
     @Bean
     public TopicExchange usersEventsExchange() {
@@ -26,7 +27,7 @@ public class UsersMessagingConfig {
         var classMapper = new DefaultClassMapper();
         classMapper.setTrustedPackages(
                 "synapt.flitsfiets.common.events",
-                "synapt.flitsfiets.users.events"
+                "synapt.flitsfiets.common.events.users"
         );
 
         converter.setClassMapper(classMapper);
