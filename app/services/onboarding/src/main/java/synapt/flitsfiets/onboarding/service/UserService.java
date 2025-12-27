@@ -7,7 +7,7 @@ import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 import synapt.flitsfiets.common.dto.user.UserFullDTO;
 
 @Service
-public class UsersService
+public class UserService
 {
     @Autowired
     private RestClient usersRestClient;

@@ -12,7 +12,7 @@ import synapt.flitsfiets.common.enums.BikeType;
 import synapt.flitsfiets.common.enums.PlanType;
 import synapt.flitsfiets.common.enums.UserType;
 import synapt.flitsfiets.common.valueObject.UserAddress;
-import synapt.flitsfiets.onboarding.service.UsersService;
+import synapt.flitsfiets.onboarding.service.UserService;
 
 import java.time.Instant;
 import java.util.HashMap;
@@ -22,10 +22,10 @@ import java.util.Map;
 @RequestMapping("/api/onboarding")
 public class OnboardingController {
 
-    private final UsersService usersService;
+    private final UserService userService;
 
-    public OnboardingController(UsersService usersService) {
-        this.usersService = usersService;
+    public OnboardingController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping
@@ -50,7 +50,7 @@ public class OnboardingController {
         ));
         fullUser.setPassword(requestedUser.getContact().getPassword());
 
-        usersService.onBoardUser(fullUser);
+        userService.onBoardUser(fullUser);
 
         SubscriptionPeriodBaseDTO plan = new SubscriptionPeriodBaseDTO();
         plan.setPlan(requestedUser.getPlanType());
