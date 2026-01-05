@@ -130,6 +130,11 @@ export default function Register() {
         // alert("Creating appointment!");
     }
 
+    window.onbeforeunload = function() {
+        return currentStep != 0;
+
+    };
+
 
     return (
         <MultiStepFormContainer
