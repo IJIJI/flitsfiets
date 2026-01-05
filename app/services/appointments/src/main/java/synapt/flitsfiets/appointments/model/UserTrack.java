@@ -1,4 +1,4 @@
-package synapt.flitsfiets.mailing.model;
+package synapt.flitsfiets.appointments.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import synapt.flitsfiets.common.enums.BikeType;
 import synapt.flitsfiets.common.enums.PlanType;
-import synapt.flitsfiets.common.enums.UserType;
 
 @Entity
 @Table(name = "user_track")
