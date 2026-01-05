@@ -13,7 +13,7 @@ export default function MultiStepFormContainer({
                                                    blockReturn,
                                                    buttonText
                                                }: {
-    children: ReactElement<typeof FormStep>[],
+    children: ReactElement<typeof FormStep>[], //TODO should be array of objects with all the options that are now in seperate arrays
     currentStep: number,
     setCurrentStep: (newStep: number) => void,
     titles: string[],
