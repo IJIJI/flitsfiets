@@ -15,4 +15,6 @@ public class TimeSlotDTO
     Instant start;
     Instant end;
     Location location;
+    Integer spots;
+    Integer spotsFilled;
 }

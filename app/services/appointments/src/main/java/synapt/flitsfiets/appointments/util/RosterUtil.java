@@ -66,7 +66,12 @@ public class RosterUtil
             ZonedDateTime zoneTime = ZonedDateTime.of(day, iterateTime, zoneId);
 
             output.add(
-                    new TimeSlotDTO(zoneTime.toInstant(), zoneTime.plusMinutes(slotMinutes).toInstant(), location)
+                    new TimeSlotDTO(zoneTime.toInstant(),
+                                    zoneTime.plusMinutes(slotMinutes).toInstant(),
+                                    location,
+                                    3,
+                                    (int) (Math.random() * 3)
+                            )
             );
 
             iterateTime = iterateTime.plusMinutes(slotMinutes);
