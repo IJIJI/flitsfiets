@@ -12,6 +12,7 @@ import Spinner from "../../components/form/loading/Spinner.tsx"
 import type {UserData} from "../../dto/UserData.tsx";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router";
+import SlotPicker from "../../components/calendar/slotPicker/SlotPicker.tsx";
 
 export default function Register() {
 
@@ -91,7 +92,7 @@ export default function Register() {
     const [userData, setUserData] = useState<UserData>({
         id: 0,
     });
-    const [appointmentOptions, setAppointmentOptions] = useState(null);
+    const [appointmentSlots, setAppointmentSlots] = useState(null);
 
 
     const createUser = () => {
@@ -115,7 +116,8 @@ export default function Register() {
             })
             .then(data => {
                 setUserData(data.user);
-                setAppointmentOptions(data.appointmentOptions);
+                setAppointmentSlots(data.slots);
+                console.log(data.slots);
             })
             .catch(err => {
                 console.log("ERROR: ", err);
@@ -522,10 +524,9 @@ export default function Register() {
                 }
             </FormStep>
             <FormStep>
-                Select Appointment
-                <code>
-                    {appointmentOptions}
-                </code>
+                {/*{ appointmentSlots != null && true*/}
+                    <SlotPicker slots={appointmentSlots}/>
+                {/*}*/}
             </FormStep>
             <FormStep>
                 All done! You can pick up your bike at (). Don't hesitate to contact us with any questions!
