@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import synapt.flitsfiets.common.dto.appointment.TimeSlotDTO;
+import synapt.flitsfiets.common.dto.appointment.TimeSlotFormattedDTO;
 import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 import synapt.flitsfiets.common.dto.user.UserFullPasswordDTO;
 import synapt.flitsfiets.common.dto.user.creation.UserCreationDTO;
@@ -15,6 +16,7 @@ import synapt.flitsfiets.onboarding.service.AppointmentService;
 import synapt.flitsfiets.onboarding.service.UserService;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,11 +64,13 @@ public class OnboardingController {
 //        System.out.println(requestedUser.getPickupCity());
 
         UserExtendedDTO newUser = userService.onBoardUser(fullUser);
-        List<TimeSlotDTO> slots = appointmentService.getAvailability(requestedUser.getPickupCity());
+        List<TimeSlotFormattedDTO> slots = appointmentService.getFormattedAvailability(requestedUser.getPickupCity());
+
 
         Map<String, Object> result = new HashMap<>();
 
         result.put("user", newUser);
+//        result.put("slots", slots);
         result.put("slots", slots);
 
         System.out.println("User Created:");
@@ -78,9 +82,9 @@ public class OnboardingController {
     }
 
     @GetMapping("/apTest")
-    public List<TimeSlotDTO> getAppointmentTest(@RequestParam(value = "loc") Location location ) {
+    public List<TimeSlotFormattedDTO> getAppointmentTest(@RequestParam(value = "loc") Location location ) {
 
-        return appointmentService.getAvailability(location);
+        return appointmentService.getFormattedAvailability(location);
 
     }
 }
