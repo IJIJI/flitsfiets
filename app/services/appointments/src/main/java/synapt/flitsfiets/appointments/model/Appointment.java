@@ -21,11 +21,17 @@ public class Appointment
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private Instant start;
 
+    @Column(nullable = false)
     private Long userId; //VO?
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private AppointmentType type;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Location location; // Shouldn't be enum
 }
