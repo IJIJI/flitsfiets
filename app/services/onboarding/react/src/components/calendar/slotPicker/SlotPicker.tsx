@@ -8,10 +8,11 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 export default function SlotPicker({slots}:
 {slots:
         {
-            start:string,
-            end:string,
-            title?:string
-        }[]
+            start: string,
+            end: string,
+            title?: string,
+            backgroundColor?: string
+        }[] | null
 }) {
 
     if (slots == null)
