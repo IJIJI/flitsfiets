@@ -1,6 +1,5 @@
 package synapt.flitsfiets.appointments.util;
 
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 import synapt.flitsfiets.common.dto.appointment.TimeSlotDTO;
 import synapt.flitsfiets.common.enums.Location;
@@ -8,6 +7,7 @@ import synapt.flitsfiets.common.enums.Location;
 import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Component
 /*
@@ -54,6 +54,8 @@ public class RosterUtil
 
     public List<TimeSlotDTO> generateDayRoster(Location location, LocalTime startTime, LocalDate day)
     {
+        Random random = new Random();
+
         List<TimeSlotDTO> output = new ArrayList<>();
 
         LocalTime iterateTime = startTime;
@@ -70,7 +72,7 @@ public class RosterUtil
                                     zoneTime.plusMinutes(slotMinutes).toInstant(),
                                     location,
                                     3,
-                                    (int) (Math.random() * 3)
+                                    random.nextInt(3+1)
                             )
             );
 
