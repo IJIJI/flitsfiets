@@ -13,5 +13,6 @@ import java.time.Instant;
 public class TimeSlotDTO
 {
     Instant start;
+    Instant end;
     Location location;
 }
