@@ -73,10 +73,10 @@ public class OnboardingController {
 //        result.put("slots", slots);
         result.put("slots", slots);
 
-        System.out.println("User Created:");
-        System.out.println(newUser);
-        System.out.println("Slots Length:");
-        System.out.println(slots.size());
+//        System.out.println("User Created:");
+//        System.out.println(newUser);
+//        System.out.println("Slots Length:");
+//        System.out.println(slots.size());
 
         return result;
     }
