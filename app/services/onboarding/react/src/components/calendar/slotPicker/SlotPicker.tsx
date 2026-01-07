@@ -40,6 +40,7 @@ export default function SlotPicker({slots}:
                     endTime: '18:00',
                 }}
                 events={slots}
+                //TODO add valid range?
                 initialDate={slots[0].start}
             />
         </div>
