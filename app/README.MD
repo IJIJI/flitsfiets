@@ -54,7 +54,7 @@ docker compose --profile dev up
 | Service       | Frontend     | Serving the frontend                                                 | 8000 | 9100     |       | 
 | Service       | Onboarding   | Serving the onboarding and handling the correct onboarding api calls | 8010 | 9101     |       | 
 | Service       | Users        | User data and subscription management.                               | 6001 | 9102     |       | 
-| Service       | Appointments | Appointment planning.                                                | 6000 | 9103     |       |
+| Service       | Appointments | Appointment planning.                                                | 6003 | 9103     |       |
 | Service       | Mailing      | Mailing                                                              | 6002 | 9104     |       |
 
 # Deployment
