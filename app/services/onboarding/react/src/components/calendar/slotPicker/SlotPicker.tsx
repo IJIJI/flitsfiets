@@ -4,7 +4,15 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 
 
 
-export default function SlotPicker({slots}: {slots: {}[]}) {
+
+export default function SlotPicker({slots}:
+{slots:
+        {
+            start:string,
+            end:string,
+            title?:string
+        }[]
+}) {
 
     if (slots == null)
         slots = [];
@@ -31,6 +39,7 @@ export default function SlotPicker({slots}: {slots: {}[]}) {
                     endTime: '18:00',
                 }}
                 events={slots}
+                initialDate={slots[0].start}
             />
         </div>
     )
