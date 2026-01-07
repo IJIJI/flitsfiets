@@ -4,14 +4,19 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import synapt.flitsfiets.common.dto.appointment.TimeSlotDTO;
 import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 import synapt.flitsfiets.common.dto.user.UserFullPasswordDTO;
 import synapt.flitsfiets.common.dto.user.creation.UserCreationDTO;
+import synapt.flitsfiets.common.enums.Location;
 import synapt.flitsfiets.common.enums.UserType;
 import synapt.flitsfiets.common.valueObject.UserAddress;
+import synapt.flitsfiets.onboarding.service.AppointmentService;
 import synapt.flitsfiets.onboarding.service.UserService;
 
+import java.sql.Time;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -19,9 +24,11 @@ import java.util.Map;
 public class OnboardingController {
 
     private final UserService userService;
+    private final AppointmentService appointmentService;
 
-    public OnboardingController(UserService userService) {
+    public OnboardingController(UserService userService, AppointmentService appointmentService) {
         this.userService = userService;
+        this.appointmentService = appointmentService;
     }
 
     @ExceptionHandler(DuplicateKeyException.class)
@@ -49,15 +56,31 @@ public class OnboardingController {
         fullUser.setActiveBikeType(requestedUser.getBikeType());
         fullUser.setActivePlanType(requestedUser.getPlanType());
 
-        UserExtendedDTO newUser = userService.onBoardUser(fullUser);
+//        System.out.println("User Requested:");
+//        System.out.println(requestedUser);
+//        System.out.println("User Created (PICKUP CITY):");
+//        System.out.println(requestedUser.getPickupCity());
 
-        System.out.println("User Created:");
-        System.out.println(newUser);
+        UserExtendedDTO newUser = userService.onBoardUser(fullUser);
+        List<TimeSlotDTO> slots = appointmentService.getAvailability(requestedUser.getPickupCity());
 
         Map<String, Object> result = new HashMap<>();
 
         result.put("user", newUser);
+        result.put("slots", slots);
+
+        System.out.println("User Created:");
+        System.out.println(newUser);
+        System.out.println("Slots Length:");
+        System.out.println(slots.size());
 
         return result;
+    }
+
+    @GetMapping("/apTest")
+    public List<TimeSlotDTO> getAppointmentTest(@RequestParam(value = "loc") Location location ) {
+
+        return appointmentService.getAvailability(location);
+
     }
 }

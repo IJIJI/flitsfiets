@@ -135,6 +135,18 @@ export default function Register() {
 
     };
 
+    const parsePickupCity= (city: string)=> {
+
+        var splitStr = city.toLowerCase().split('_');
+        for (var i = 0; i < splitStr.length; i++) {
+            // You do not need to check if i is larger than splitStr length, as your for does that for you
+            // Assign it back to the array
+            splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+        }
+        // Directly return the joined string
+        return splitStr.join(' ');
+    }
+
 
     return (
         <MultiStepFormContainer
@@ -142,7 +154,7 @@ export default function Register() {
             setCurrentStep={setCurrentStep}
             titles={[
                 "Choose a City",
-                "Our Bikes in " + onboardingData.pickupCity,
+                "Our Bikes in " + parsePickupCity(onboardingData.pickupCity),
                 "Choose Your Plan",
                 "Nice to meet you!",
                 "Lets stay in touch",
@@ -209,19 +221,19 @@ export default function Register() {
                         <option value="" disabled>
                             -- Select a City --
                         </option>
-                        <option>
+                        <option value={"AMSTERDAM"}>
                             Amsterdam
                         </option>
-                        <option>
+                        <option value={"BREDA"}>
                             Breda
                         </option>
-                        <option>
+                        <option value={"DELFT"}>
                             Delft
                         </option>
-                        <option>
+                        <option value={"DEN_HAAG"}>
                             Den Haag
                         </option>
-                        <option>
+                        <option value={"ROTTERDAM"}>
                             Rotterdam
                         </option>
                     </Input>
@@ -406,7 +418,7 @@ export default function Register() {
                         <FormGroup className={"col-6 px-1"}>
                             <Label className={"m-0"} for="city">City:</Label>
                             <Input type="text" name="city" id="city"
-                                   value={onboardingData.address.city != "" ? onboardingData.address.city : onboardingData.pickupCity}
+                                   value={onboardingData.address.city != "" ? onboardingData.address.city : parsePickupCity(onboardingData.pickupCity)}
                                    onChange={(event) => {
                                        setOnboardingData({
                                            ...onboardingData,
