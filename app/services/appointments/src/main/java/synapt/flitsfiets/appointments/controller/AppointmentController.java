@@ -22,6 +22,6 @@ public class AppointmentController
 
     @GetMapping
     public List<TimeSlotDTO> getPossibleSlots(@RequestParam("loc") Location location){
-        return rosterUtil.generatePlaceholderRoster(Location.AMSTERDAM);
+        return rosterUtil.generatePlaceholderRoster(location);
     }
 }
