@@ -161,7 +161,7 @@ export default function Register() {
                 "Nice to meet you!",
                 "Lets stay in touch",
                 "Welcome " + onboardingData.personal.name + "!",
-                "Make an Appointment",
+                "Make an Appointment in " + parsePickupCity(onboardingData.pickupCity),
                 "All Done"
             ]}
             buttonText={[
