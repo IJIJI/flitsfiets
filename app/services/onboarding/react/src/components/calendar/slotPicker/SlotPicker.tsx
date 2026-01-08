@@ -1,6 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import '../calendar.less';
 
 
 
