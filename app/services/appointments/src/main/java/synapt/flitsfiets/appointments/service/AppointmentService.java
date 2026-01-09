@@ -17,12 +17,12 @@ public class AppointmentService
     @Autowired
     AppointmentRepository appointmentRepository;
 
-    List<Location> getLocations()
+    public List<Location> getLocations()
     {
         return Arrays.asList(Location.values());
     }
 
-    Appointment getAppointment(Long id)
+    public Appointment getAppointment(Long id)
     {
         return appointmentRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Appointment does not exist"));
@@ -32,7 +32,7 @@ public class AppointmentService
         return appointmentRepository.findAllByUserId(userId);
     }
 
-    Appointment createAppointment(Appointment appointment){
+    public Appointment createAppointment(Appointment appointment){
 
         Appointment newAppointment = appointmentRepository.save(appointment);
         appointmentRepository.flush();
