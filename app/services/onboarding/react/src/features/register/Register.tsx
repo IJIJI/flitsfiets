@@ -93,9 +93,6 @@ export default function Register() {
         id: 0,
     });
 
-    const [appointmentSlots, setAppointmentSlots] = useState<CalendarSlot[] | null>(null);
-    const [selectedSlot, setSelectedSlot] = useState<ActiveSlot | null>(null);
-
     const createUser = () => {
 
         fetch("/api/onboarding", {
@@ -109,8 +106,7 @@ export default function Register() {
                 if (res.status == 409) {
                     navigate("/login");
                     throw new Error("This email is already used. Please login.");
-                }
-                else if (res.status != 200)
+                } else if (res.status != 200)
                     throw new Error(res.statusText);
 
                 return res.json()
@@ -127,18 +123,23 @@ export default function Register() {
             })
     }
 
-    // const [selectedAppointment, setSelectedAppointment] = useState(null);
+    const [appointmentSlots, setAppointmentSlots] = useState<CalendarSlot[] | null>(null);
+    const [selectedSlot, setSelectedSlot] = useState<ActiveSlot | null>(null);
+
+    const clearSelectedSlot = () => {
+        setSelectedSlot(null);
+    }
 
     const createAppointment = () => {
         // alert("Creating appointment!");
     }
 
-    window.onbeforeunload = function() {
+    window.onbeforeunload = function () {
         return currentStep != 0;
 
     };
 
-    const parsePickupCity= (city: string)=> {
+    const parsePickupCity = (city: string) => {
 
         var splitStr = city.toLowerCase().split('_');
         for (var i = 0; i < splitStr.length; i++) {
@@ -201,6 +202,7 @@ export default function Register() {
                 null,
                 checkPassEqual,
                 createUser,
+                clearSelectedSlot,
                 createAppointment
             ]}
         >
@@ -259,13 +261,16 @@ export default function Register() {
                 </BikeCardGrid>
             </FormStep>
             <PlanCardGrid>
-                <PlanCard title={"Monthly"} index={PlanType.Monthly} activeIndex={onboardingData.planType} setIndex={setActivePlan}
+                <PlanCard title={"Monthly"} index={PlanType.Monthly} activeIndex={onboardingData.planType}
+                          setIndex={setActivePlan}
                           price={"35,-"}
                 />
-                <PlanCard title={"Yearly"} index={PlanType.Yearly} activeIndex={onboardingData.planType} setIndex={setActivePlan}
+                <PlanCard title={"Yearly"} index={PlanType.Yearly} activeIndex={onboardingData.planType}
+                          setIndex={setActivePlan}
                           price={"35,-"}
                           discountedprice={"29,99"}/>
-                <PlanCard title={"2 Years"} index={PlanType.BiYearly} activeIndex={onboardingData.planType} setIndex={setActivePlan}
+                <PlanCard title={"2 Years"} index={PlanType.BiYearly} activeIndex={onboardingData.planType}
+                          setIndex={setActivePlan}
                           price={"35,-"}
                           discountedprice={"19,99"}/>
             </PlanCardGrid>
@@ -520,13 +525,14 @@ export default function Register() {
                     :
                     <Form>
                         Welcome to BikeFLash! A confirmation email has been sent to <b
-                        className={"px-1"}>{userData.email + "."}</b> Make sure to confirm it.
+                        className={"px-1"}>{userData.email + "."}</b> Make sure to confirm it. <br/> When logged, in you can
+                        also see or change your appointments.
                     </Form>
                 }
             </FormStep>
             <FormStep>
                 {/*{ appointmentSlots != null && true*/}
-                    <SlotPicker slots={appointmentSlots} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot}/>
+                <SlotPicker slots={appointmentSlots} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot}/>
                 {/*}*/}
             </FormStep>
             <FormStep>
