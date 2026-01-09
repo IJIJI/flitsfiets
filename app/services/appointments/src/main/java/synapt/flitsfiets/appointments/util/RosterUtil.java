@@ -90,6 +90,10 @@ public class RosterUtil
         return output;
     }
 
+    public int getSlotLength(){
+        return slotMinutes;
+    }
+
     public boolean localTimeIsBeforeOrEqual(LocalTime date, LocalTime compare)
     {
         return date.isBefore(compare) || date.equals(compare);
