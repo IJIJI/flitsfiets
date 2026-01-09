@@ -126,16 +126,36 @@ export default function Register() {
     const [appointmentSlots, setAppointmentSlots] = useState<CalendarSlot[] | null>(null);
     const [selectedSlot, setSelectedSlot] = useState<ActiveSlot | null>(null);
 
-    const clearSelectedSlot = () => {
-        setSelectedSlot(null);
-    }
+    const [assignedSlot, setAssignedSlot] = useState<ActiveSlot | null | string>(null); //Should be request state instead of code. Maybe app wide
 
     const createAppointment = () => {
-        // alert("Creating appointment!");
+
+        fetch("/api/onboarding/appointment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(selectedSlot)
+        })
+            .then(res => {
+                if (res.status != 200)
+                    throw new Error(res.statusText);
+
+                return res.json()
+            })
+            .then(data => {
+                console.log(data);
+                setAssignedSlot(data);
+            })
+            .catch(err => {
+                console.log("ERROR: ", err);
+                setAssignedSlot("FAILED");
+            })
+
     }
 
     window.onbeforeunload = function () {
-        return currentStep != 0;
+        return currentStep != 0 && currentStep != 7;
 
     };
 
@@ -174,7 +194,7 @@ export default function Register() {
                 "Create Account",
                 "Make Appointment",
                 "Claim Slot",
-                "Finish",
+                "Open Your Portal",
             ]}
             completed={[
                 onboardingData.pickupCity != null && onboardingData.pickupCity != "",
@@ -183,8 +203,8 @@ export default function Register() {
                 detailsFormValid,
                 contactFormValid,
                 userData.id != 0,
-                selectedSlot != null && (!selectedSlot.full)
-                // selectedAppointment != null
+                selectedSlot != null && (!selectedSlot.full),
+                true
             ]}
             blockReturn={[
                 false,
@@ -202,8 +222,13 @@ export default function Register() {
                 null,
                 checkPassEqual,
                 createUser,
-                clearSelectedSlot,
-                createAppointment
+                () => {
+                    setSelectedSlot(null);
+                },
+                createAppointment,
+                () => {
+                    open("https://app.flitsfiets.nl")
+                }
             ]}
         >
             <FormStep>
@@ -525,7 +550,8 @@ export default function Register() {
                     :
                     <Form>
                         Welcome to BikeFLash! A confirmation email has been sent to <b
-                        className={"px-1"}>{userData.email + "."}</b> Make sure to confirm it. <br/> When logged, in you can
+                        className={"px-1"}>{userData.email + "."}</b> Make sure to confirm it. <br/> When logged, in you
+                        can
                         also see or change your appointments.
                     </Form>
                 }
@@ -536,7 +562,23 @@ export default function Register() {
                 {/*}*/}
             </FormStep>
             <FormStep>
-                All done! You can pick up your bike at (). Don't hesitate to contact us with any questions!
+                {assignedSlot == null ?
+                    <Spinner>Claiming your slot...</Spinner>
+                    : <>{assignedSlot == "FAILED" ?
+                        <Form>
+                            Welcome to BikeFlash! We are having trouble registering your appointment, but don't worry!
+                            You can still create a pickup appointment in the customer portal. Here you can also manage
+                            your details and request repairs to your bike.
+                        </Form>
+                        :
+                        <Form>
+                            Welcome to BikeFlash! Your appointment is made. We'll see you on {(assignedSlot as ActiveSlot).start?.toString()} You should receive an appointment confirmation email. In the meantime
+                            you can login to the customer portal! Here you can manage your appointments, change your
+                            details and repairs to your bike.
+                        </Form>
+
+                    }</>
+                }
             </FormStep>
         </MultiStepFormContainer>
     );
