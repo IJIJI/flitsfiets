@@ -23,9 +23,12 @@ public class Appointment
 
     @Column(nullable = false)
     private Instant start;
+    @Column(nullable = true, name = "ends")
+    private Instant end;
 
-    @Column(nullable = false)
-    private Long userId; //VO?
+    @ManyToOne(optional = false)
+//    @JoinColumn(nullable = true)
+    private UserTrack user; //VO?
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
