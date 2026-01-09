@@ -29,7 +29,7 @@ public class RosterUtil
         List<TimeSlotDTO> output = new ArrayList<>();
 
 
-        for (int x = 0; x < 10; x++)
+        for (int x = 0; x < workDaysInFuture; x++)
         {
             LocalTime curDayStart = dayStart;
 
