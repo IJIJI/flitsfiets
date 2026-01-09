@@ -156,7 +156,7 @@ export default function SlotPicker({slots, selectedSlot, setSelectedSlot}: { slo
 
     // if (slots == null)
     //     slots = testSlots;
-    // slots = [];
+
     if (slots != null) {
         slots.forEach(function (slot, index) {
 
