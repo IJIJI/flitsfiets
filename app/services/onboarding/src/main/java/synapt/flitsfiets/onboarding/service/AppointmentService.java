@@ -56,13 +56,19 @@ public class AppointmentService
             formattedSlot.setStart(String.valueOf(slot.getStart()));
             formattedSlot.setEnd(String.valueOf(slot.getEnd()));
 
+            formattedSlot.setSpots(slot.getSpots());
+            formattedSlot.setSpotsFilled(slot.getSpotsFilled());
+
             formattedSlot.setTitle(
                     ( slot.getSpots() - slot.getSpotsFilled() ) +
                     " spots left"
             );
 
-            if(slot.getSpotsFilled().equals(slot.getSpots()))
+            formattedSlot.setFull(false);
+            if(slot.getSpotsFilled().equals(slot.getSpots())){
                 formattedSlot.setBackgroundColor("#C70000");
+                formattedSlot.setFull(true);
+            }
             else if ((double) slot.getSpotsFilled() /slot.getSpots() > 0.5)
                 formattedSlot.setBackgroundColor("#F59B1D");
             else
