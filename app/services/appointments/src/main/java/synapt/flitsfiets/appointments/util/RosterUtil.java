@@ -33,12 +33,12 @@ public class RosterUtil
         {
             LocalTime curDayStart = dayStart;
 
-            if(curDate.getDayOfWeek() == DayOfWeek.SATURDAY)
+            if (curDate.getDayOfWeek() == DayOfWeek.SATURDAY)
                 curDate = curDate.plusDays(1);
-            if(curDate.getDayOfWeek() == DayOfWeek.SUNDAY)
+            if (curDate.getDayOfWeek() == DayOfWeek.SUNDAY)
                 curDate = curDate.plusDays(1);
 
-            if(x == 0)
+            if (x == 0)
                 curDayStart = LocalTime.now(zoneId);
 
             output.addAll(
@@ -60,20 +60,23 @@ public class RosterUtil
 
         LocalTime iterateTime = startTime;
 
-        if((startTime.getMinute() + startTime.getHour() * 60) % slotMinutes != 0)
+        if ((startTime.getMinute() + startTime.getHour() * 60) % slotMinutes != 0)
             iterateTime = startTime.plusMinutes(slotMinutes - (startTime.getMinute() + startTime.getHour() * 60) % slotMinutes);
 
         while (localTimeIsBeforeOrEqual(iterateTime.plusMinutes(slotMinutes), dayEnd))
         {
             ZonedDateTime zoneTime = ZonedDateTime.of(day, iterateTime, zoneId);
 
+            TimeSlotDTO slot = new TimeSlotDTO();
+
+            slot.setStart(zoneTime.toInstant());
+            slot.setEnd(zoneTime.plusMinutes(slotMinutes).toInstant());
+            slot.setLocation(location);
+            slot.setSpots(3);
+            slot.setSpotsFilled(random.nextInt(3 + 1));
+
             output.add(
-                    new TimeSlotDTO(zoneTime.toInstant(),
-                                    zoneTime.plusMinutes(slotMinutes).toInstant(),
-                                    location,
-                                    3,
-                                    random.nextInt(3+1)
-                            )
+                    slot
             );
 
             iterateTime = iterateTime.plusMinutes(slotMinutes);
@@ -82,7 +85,8 @@ public class RosterUtil
         return output;
     }
 
-    public boolean localTimeIsBeforeOrEqual(LocalTime date, LocalTime compare){
+    public boolean localTimeIsBeforeOrEqual(LocalTime date, LocalTime compare)
+    {
         return date.isBefore(compare) || date.equals(compare);
     }
 }
