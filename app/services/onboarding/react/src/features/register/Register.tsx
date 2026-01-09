@@ -153,7 +153,7 @@ export default function Register() {
 
 
     return (
-        <MultiStepFormContainer
+        <MultiStepFormContainer // I smell I smell... Codesmell!?
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}
             titles={[
