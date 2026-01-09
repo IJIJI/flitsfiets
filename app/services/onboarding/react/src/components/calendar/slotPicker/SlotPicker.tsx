@@ -141,6 +141,7 @@ export interface CalendarSlot {
 }
 
 export interface ActiveSlot {
+    location?: string;
     id?: string;
     start?: Date | null;
     end?: Date | null;
@@ -194,6 +195,7 @@ export default function SlotPicker({slots, selectedSlot, setSelectedSlot}: { slo
             id: newSelected?.id,
             start: newSelected?.start,
             end: newSelected?.end,
+            location: newSelected?.extendedProps.location,
             full: newSelected?.extendedProps.full
         });
     }
