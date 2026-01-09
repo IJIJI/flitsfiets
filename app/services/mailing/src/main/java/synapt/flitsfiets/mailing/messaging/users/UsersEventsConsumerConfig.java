@@ -7,8 +7,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UsersEventsConsumerConfig
 {
-
-
     public static final String USERS_EVENTS_EXCHANGE = "ff.users.events";
     public static final String RK_USER_CREATED = "users.user.created.v1";
     //    Mailing owned queue for user created events
