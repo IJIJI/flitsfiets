@@ -2,133 +2,133 @@ import FullCalendar from "@fullcalendar/react";
 import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import '../calendar.less';
-import {createRef, useState} from "react";
+import {createRef, type Dispatch, type SetStateAction} from "react";
 
 
-const testSlots = JSON.parse(`[
-  {
-    "id": 0,
-    "start": "2026-01-12T07:00:00Z",
-    "end": "2026-01-12T07:15:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 2
-  },
-  {
-    "id": 1,
-    "start": "2026-01-12T07:15:00Z",
-    "end": "2026-01-12T07:30:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 1
-  },
-  {
-    "id": 2,
-    "start": "2026-01-12T07:30:00Z",
-    "end": "2026-01-12T07:45:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 3
-  },
-  {
-    "id": 3,
-    "start": "2026-01-12T07:45:00Z",
-    "end": "2026-01-12T08:00:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 1
-  },
-  {
-    "id": 4,
-    "start": "2026-01-12T08:00:00Z",
-    "end": "2026-01-12T08:15:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 1
-  },
-  {
-    "id": 5,
-    "start": "2026-01-12T08:15:00Z",
-    "end": "2026-01-12T08:30:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 0
-  },
-  {
-    "id": 6,
-    "start": "2026-01-12T08:30:00Z",
-    "end": "2026-01-12T08:45:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 1
-  },
-  {
-    "id": 7,
-    "start": "2026-01-12T08:45:00Z",
-    "end": "2026-01-12T09:00:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 2
-  },
-  {
-    "id": 8,
-    "start": "2026-01-12T09:00:00Z",
-    "end": "2026-01-12T09:15:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 1
-  },
-  {
-    "id": 9,
-    "start": "2026-01-12T09:15:00Z",
-    "end": "2026-01-12T09:30:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 1
-  },
-  {
-    "id": 10,
-    "start": "2026-01-12T09:30:00Z",
-    "end": "2026-01-12T09:45:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 2
-  },
-  {
-    "id": 11,
-    "start": "2026-01-12T09:45:00Z",
-    "end": "2026-01-12T10:00:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 0
-  },
-  {
-    "id": 12,
-    "start": "2026-01-12T10:00:00Z",
-    "end": "2026-01-12T10:15:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 0
-  },
-  {
-    "id": 13,
-    "start": "2026-01-12T10:15:00Z",
-    "end": "2026-01-12T10:30:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 1
-  },
-  {
-    "id": 14,
-    "start": "2026-01-12T10:30:00Z",
-    "end": "2026-01-12T10:45:00Z",
-    "location": "DELFT",
-    "spots": 3,
-    "spotsFilled": 0
-  }
-]`);
+// const testSlots = JSON.parse(`[
+//   {
+//     "id": 0,
+//     "start": "2026-01-12T07:00:00Z",
+//     "end": "2026-01-12T07:15:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 2
+//   },
+//   {
+//     "id": 1,
+//     "start": "2026-01-12T07:15:00Z",
+//     "end": "2026-01-12T07:30:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 1
+//   },
+//   {
+//     "id": 2,
+//     "start": "2026-01-12T07:30:00Z",
+//     "end": "2026-01-12T07:45:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 3
+//   },
+//   {
+//     "id": 3,
+//     "start": "2026-01-12T07:45:00Z",
+//     "end": "2026-01-12T08:00:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 1
+//   },
+//   {
+//     "id": 4,
+//     "start": "2026-01-12T08:00:00Z",
+//     "end": "2026-01-12T08:15:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 1
+//   },
+//   {
+//     "id": 5,
+//     "start": "2026-01-12T08:15:00Z",
+//     "end": "2026-01-12T08:30:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 0
+//   },
+//   {
+//     "id": 6,
+//     "start": "2026-01-12T08:30:00Z",
+//     "end": "2026-01-12T08:45:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 1
+//   },
+//   {
+//     "id": 7,
+//     "start": "2026-01-12T08:45:00Z",
+//     "end": "2026-01-12T09:00:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 2
+//   },
+//   {
+//     "id": 8,
+//     "start": "2026-01-12T09:00:00Z",
+//     "end": "2026-01-12T09:15:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 1
+//   },
+//   {
+//     "id": 9,
+//     "start": "2026-01-12T09:15:00Z",
+//     "end": "2026-01-12T09:30:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 1
+//   },
+//   {
+//     "id": 10,
+//     "start": "2026-01-12T09:30:00Z",
+//     "end": "2026-01-12T09:45:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 2
+//   },
+//   {
+//     "id": 11,
+//     "start": "2026-01-12T09:45:00Z",
+//     "end": "2026-01-12T10:00:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 0
+//   },
+//   {
+//     "id": 12,
+//     "start": "2026-01-12T10:00:00Z",
+//     "end": "2026-01-12T10:15:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 0
+//   },
+//   {
+//     "id": 13,
+//     "start": "2026-01-12T10:15:00Z",
+//     "end": "2026-01-12T10:30:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 1
+//   },
+//   {
+//     "id": 14,
+//     "start": "2026-01-12T10:30:00Z",
+//     "end": "2026-01-12T10:45:00Z",
+//     "location": "DELFT",
+//     "spots": 3,
+//     "spotsFilled": 0
+//   }
+// ]`);
 
-interface CalendarSlot {
+export interface CalendarSlot {
     id: string;
     start: Date | null;
     end: Date | null;
@@ -140,7 +140,7 @@ interface CalendarSlot {
     full?: boolean | null;
 }
 
-interface ActiveSlot {
+export interface ActiveSlot {
     id?: string;
     start?: Date | null;
     end?: Date | null;
@@ -148,13 +148,13 @@ interface ActiveSlot {
 }
 
 
-export default function SlotPicker({slots}: { slots: CalendarSlot[] | null }) {
+export default function SlotPicker({slots, selectedSlot, setSelectedSlot}: { slots: CalendarSlot[] | null, selectedSlot: ActiveSlot | null, setSelectedSlot: Dispatch<SetStateAction<ActiveSlot | null>>}) {
 
     const calendarRef = createRef<FullCalendar>()
-    const [selectedSlot, setSelectedSlot] = useState<ActiveSlot | null>(null);
+    // const [selectedSlot, setSelectedSlot] = useState<ActiveSlot | null>(null);
 
-    if (slots == null)
-        slots = testSlots;
+    // if (slots == null)
+    //     slots = testSlots;
     // slots = [];
     if (slots != null) {
         slots.forEach(function (slot, index) {
@@ -193,7 +193,8 @@ export default function SlotPicker({slots}: { slots: CalendarSlot[] | null }) {
         setSelectedSlot({
             id: newSelected?.id,
             start: newSelected?.start,
-            end: newSelected?.end
+            end: newSelected?.end,
+            full: newSelected?.extendedProps.full
         });
     }
 

@@ -12,7 +12,7 @@ import Spinner from "../../components/form/loading/Spinner.tsx"
 import type {UserData} from "../../dto/UserData.tsx";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router";
-import SlotPicker from "../../components/calendar/slotPicker/SlotPicker.tsx";
+import SlotPicker, {type ActiveSlot, type CalendarSlot} from "../../components/calendar/slotPicker/SlotPicker.tsx";
 
 export default function Register() {
 
@@ -92,8 +92,9 @@ export default function Register() {
     const [userData, setUserData] = useState<UserData>({
         id: 0,
     });
-    const [appointmentSlots, setAppointmentSlots] = useState(null);
 
+    const [appointmentSlots, setAppointmentSlots] = useState<CalendarSlot[] | null>(null);
+    const [selectedSlot, setSelectedSlot] = useState<ActiveSlot | null>(null);
 
     const createUser = () => {
 
@@ -181,7 +182,7 @@ export default function Register() {
                 detailsFormValid,
                 contactFormValid,
                 userData.id != 0,
-                false
+                selectedSlot != null && (!selectedSlot.full)
                 // selectedAppointment != null
             ]}
             blockReturn={[
@@ -525,7 +526,7 @@ export default function Register() {
             </FormStep>
             <FormStep>
                 {/*{ appointmentSlots != null && true*/}
-                    <SlotPicker slots={appointmentSlots}/>
+                    <SlotPicker slots={appointmentSlots} selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot}/>
                 {/*}*/}
             </FormStep>
             <FormStep>
