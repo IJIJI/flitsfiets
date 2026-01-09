@@ -1,12 +1,6 @@
 package synapt.flitsfiets.mailing.messaging.users;
 
 import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.DefaultJacksonJavaTypeMapper;
-import org.springframework.amqp.support.converter.JacksonJavaTypeMapper;
-import org.springframework.amqp.support.converter.JacksonJsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -40,58 +34,5 @@ public class UsersEventsConsumerConfig
                 .bind(mailingUsersCreatedQueue)
                 .to(usersEventsExchange)
                 .with(RK_USER_CREATED);
-    }
-
-    @Bean
-    public JacksonJsonMessageConverter jacksonJsonMessageConverter()
-    {
-        var converter = new JacksonJsonMessageConverter();
-
-        // Security: only allow your packages for deserialization
-//        var classMapper = new DefaultClassMapper();
-//        classMapper.setTrustedPackages(
-//                "synapt.flitsfiets.common.events",
-//                "synapt.flitsfiets.common.events.users",
-//                "synapt.flitsfiets.common.dto"
-//        );
-//        converter.setClassMapper(classMapper);
-
-        var typeMapper = new DefaultJacksonJavaTypeMapper();
-        typeMapper.setTrustedPackages(
-                "synapt.flitsfiets.common.events",
-                "synapt.flitsfiets.common.events.users",
-                "synapt.flitsfiets.common.dto"
-        );
-
-        // Use the @RabbitListener method signature (EventEnvelope<UserCreated>) as the target type
-        typeMapper.setTypePrecedence(JacksonJavaTypeMapper.TypePrecedence.INFERRED);
-        converter.setJavaTypeMapper(typeMapper);
-
-        return converter;
-    }
-
-    @Bean
-    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(
-            ConnectionFactory connectionFactory,
-            JacksonJsonMessageConverter converter
-    )
-    {
-        var factory = new SimpleRabbitListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
-        factory.setMessageConverter(converter);
-
-        // sensible defaults you can tune later
-        factory.setDefaultRequeueRejected(false); // don’t infinite-loop poison messages
-
-        return factory;
-    }
-
-    // Optional: only needed if THIS service also publishes
-    @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory cf, JacksonJsonMessageConverter converter)
-    {
-        var template = new RabbitTemplate(cf);
-        template.setMessageConverter(converter);
-        return template;
     }
 }
