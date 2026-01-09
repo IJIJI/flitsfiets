@@ -189,8 +189,6 @@ export default function SlotPicker({slots, selectedSlot, setSelectedSlot}: { slo
         else
             newSelected?.setProp('classNames', 'activeEvent');
 
-        console.log(newSelected);
-
         setSelectedSlot({
             id: newSelected?.id,
             start: newSelected?.start,

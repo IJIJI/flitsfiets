@@ -152,7 +152,6 @@ export default function Register() {
                 return res.json()
             })
             .then(data => {
-                console.log(data);
                 setAssignedSlot(data);
             })
             .catch(err => {
