@@ -4,6 +4,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import synapt.flitsfiets.common.dto.appointment.AppointmentDTO;
 import synapt.flitsfiets.common.dto.appointment.TimeSlotDTO;
 import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 import synapt.flitsfiets.common.dto.user.UserFullPasswordDTO;
@@ -83,5 +84,14 @@ public class OnboardingController {
 
         return appointmentService.getAvailability(location);
 
+    }
+
+
+
+    @PostMapping("/appointment")
+    public AppointmentDTO onboardUser(@RequestBody AppointmentDTO appointment) {
+        System.out.println("Appointment Requested: " + appointment);
+
+        return appointmentService.requestAppointment(appointment);
     }
 }

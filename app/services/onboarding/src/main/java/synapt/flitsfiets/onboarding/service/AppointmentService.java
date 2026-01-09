@@ -4,10 +4,13 @@ import org.apache.coyote.BadRequestException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.client.RestClient;
+import synapt.flitsfiets.common.dto.appointment.AppointmentDTO;
 import synapt.flitsfiets.common.dto.appointment.TimeSlotDTO;
+import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 import synapt.flitsfiets.common.enums.Location;
 
 import java.nio.charset.StandardCharsets;
@@ -40,6 +43,23 @@ public class AppointmentService
                 )
                 .body(new ParameterizedTypeReference<List<TimeSlotDTO>>() {});
 
+    }
+
+    public AppointmentDTO requestAppointment(AppointmentDTO request){
+        return appointmentsRestClient
+                .post()
+                .uri("/appointments")
+                .body(request)
+                .retrieve()
+                .onStatus(
+                        status -> status.value() != 200 && status.value() != 409,
+                        (req, res) -> {
+                            String body = StreamUtils.copyToString(res.getBody(), StandardCharsets.UTF_8);
+
+                            throw new BadRequestException(body);
+                        }
+                )
+                .body(AppointmentDTO.class);
     }
 
 }
