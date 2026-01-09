@@ -44,9 +44,7 @@ public class AppointmentService
         AppointmentDTO newAppointment = modelMapper.map(appointmentRepository.save(appointment), AppointmentDTO.class);
         appointmentRepository.flush();
 
-
         appointmentEventPublisher.publishAppointmentCreated(new AppointmentCreated(newAppointment));
-
 
         return newAppointment;
     }
