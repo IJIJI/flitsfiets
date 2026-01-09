@@ -18,7 +18,7 @@ export default function Register() {
 
     const navigate = useNavigate();
 
-    const [currentStep, setCurrentStep] = useState(6);
+    const [currentStep, setCurrentStep] = useState(0);
 
     const [onboardingData, setOnboardingData] = useState<OnboardingData>({
         pickupCity: "",
@@ -114,7 +114,6 @@ export default function Register() {
             .then(data => {
                 setUserData(data.user);
                 setAppointmentSlots(data.slots);
-                console.log(data.slots);
             })
             .catch(err => {
                 console.log("ERROR: ", err);
@@ -129,8 +128,6 @@ export default function Register() {
     const [assignedSlot, setAssignedSlot] = useState<ActiveSlot | null | string>(null); //Should be request state instead of code. Maybe app wide
 
     const createAppointment = () => {
-
-        console.log(JSON.stringify({slot: selectedSlot, user: {id: 1}}));
 
         fetch("/api/onboarding/appointment", {
             method: "POST",
