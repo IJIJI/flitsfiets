@@ -11,11 +11,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
+import synapt.flitsfiets.common.dto.appointment.AppointmentDTO;
 import synapt.flitsfiets.common.dto.user.UserBaseDTO;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @Service
@@ -83,6 +87,25 @@ public class MailingService
                         "${name}", to.getName(),
                         "${token}", token,
                         "${link}", link
+                ));
+    }
+
+    @Async
+    public void sendAppointmentConfirmation(AppointmentDTO appointment) throws MessagingException, IOException
+    {
+        String link = "https://app.flitsfiets.nl/appointments";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime start = LocalDateTime.ofInstant(appointment.getStart(), ZoneId.of("Europe/Amsterdam")); // TODO: Should be in the common properties?
+
+        sendTemplateEmail(appointment.getUser().getEmail(), "You have a new appointment! | BikeFlash",
+                "mails/account/appointment_confirmation.html",
+                Map.of(
+                        "${name}", appointment.getUser().getName(),
+                        "${link}", link,
+                        "${type}", appointment.getType().name(),
+                        "${startdate}", start.format(formatter)
+
                 ));
     }
 }
