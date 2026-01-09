@@ -1,6 +1,5 @@
 package synapt.flitsfiets.appointments.controller;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import synapt.flitsfiets.appointments.model.Appointment;
@@ -24,8 +23,6 @@ public class AppointmentController
     AppointmentService appointmentService;
     @Autowired
     UserTrackService userTrackService;
-    @Autowired
-    private ModelMapper modelMapper;
 
     @GetMapping
     public List<TimeSlotDTO> getPossibleSlots(@RequestParam("loc") Location location){
@@ -45,8 +42,6 @@ public class AppointmentController
         UserTrack user = userTrackService.getById(request.getUser().getId());
         newAppointment.setUser(user);
 
-        Appointment created = appointmentService.createAppointment(newAppointment);
-
-        return modelMapper.map(created, AppointmentDTO.class);
+        return appointmentService.createAppointment(newAppointment);
     }
 }
