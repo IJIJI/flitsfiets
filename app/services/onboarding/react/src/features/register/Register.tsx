@@ -102,13 +102,23 @@ export default function Register() {
             },
             body: JSON.stringify(onboardingData)
         })
-            .then(res => {
+            .then(async res => {
                 if (res.status == 409) {
                     navigate("/login");
                     throw new Error("This email is already used. Please login.");
-                } else if (res.status != 200)
-                    throw new Error(res.statusText);
-
+                } else if (res.status != 200) {
+                    const details = await res.json();
+                    if (details.error == "appointments") {
+                        setAssignedSlot("FAILED");
+                        setCurrentStep(7);
+                        throw new Error(res.statusText);
+                    }
+                    else{
+                        setCurrentStep(4);
+                        toast.error("Failed: " + res.statusText);
+                        throw new Error(res.statusText);
+                    }
+                }
                 return res.json()
             })
             .then(data => {
@@ -117,8 +127,6 @@ export default function Register() {
             })
             .catch(err => {
                 console.log("ERROR: ", err);
-                setCurrentStep(4);
-                toast.error("Failed: " + err.message);
             })
     }
 

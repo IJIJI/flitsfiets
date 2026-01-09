@@ -38,7 +38,7 @@ public class OnboardingController {
     }
 
     @PostMapping
-    public Map<String, Object> onboardUser(@RequestBody UserCreationDTO requestedUser) {
+    public ResponseEntity<Map<String, Object>> onboardUser(@RequestBody UserCreationDTO requestedUser) {
 
         UserFullPasswordDTO fullUser = new UserFullPasswordDTO();
         fullUser.setName(requestedUser.getPersonal().getName());
@@ -63,7 +63,21 @@ public class OnboardingController {
 //        System.out.println(requestedUser.getPickupCity());
 
         UserExtendedDTO newUser = userService.onBoardUser(fullUser);
-        List<TimeSlotDTO> slots = appointmentService.getAvailability(requestedUser.getPickupCity());
+
+        List<TimeSlotDTO> slots = null;
+
+        try {
+
+            slots = appointmentService.getAvailability(requestedUser.getPickupCity());
+            if (slots == null || slots.isEmpty())
+                throw new Exception("Failed loading slots");
+        }
+        catch (Exception e){
+            Map<String, Object> response = new HashMap<>();
+            response.put("error", "appointments");
+            response.put("message", e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
 
         Map<String, Object> result = new HashMap<>();
@@ -77,7 +91,7 @@ public class OnboardingController {
 //        System.out.println("Slots Length:");
 //        System.out.println(slots.size());
 
-        return result;
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping("/apTest")
