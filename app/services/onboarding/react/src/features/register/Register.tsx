@@ -18,7 +18,7 @@ export default function Register() {
 
     const navigate = useNavigate();
 
-    const [currentStep, setCurrentStep] = useState(0);
+    const [currentStep, setCurrentStep] = useState(6);
 
     const [onboardingData, setOnboardingData] = useState<OnboardingData>({
         pickupCity: "",
@@ -130,12 +130,20 @@ export default function Register() {
 
     const createAppointment = () => {
 
+        console.log(JSON.stringify({slot: selectedSlot, user: {id: 1}}));
+
         fetch("/api/onboarding/appointment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(selectedSlot)
+            body: JSON.stringify({
+                id: selectedSlot?.id,
+                start: selectedSlot?.start,
+                end: selectedSlot?.end,
+                location: selectedSlot?.location,
+                user: userData
+            })
         })
             .then(res => {
                 if (res.status != 200)
