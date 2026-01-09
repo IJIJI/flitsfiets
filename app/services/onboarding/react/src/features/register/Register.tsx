@@ -580,13 +580,13 @@ export default function Register() {
                         <Form>
                             Welcome to BikeFlash! We are having trouble registering your appointment, but don't worry!
                             You can still create a pickup appointment in the customer portal. Here you can also manage
-                            your details and request repairs to your bike.
+                            your details, and request repairs to your bike.
                         </Form>
                         :
                         <Form>
                             Welcome to BikeFlash! Your appointment is made. We'll see you on {(assignedSlot as ActiveSlot).start?.toString()} You should receive an appointment confirmation email. In the meantime
                             you can login to the customer portal! Here you can manage your appointments, change your
-                            details and repairs to your bike.
+                            details and request repairs to your bike.
                         </Form>
 
                     }</>
