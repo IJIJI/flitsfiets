@@ -6,169 +6,139 @@ import {createRef, useState} from "react";
 
 
 const testSlots = JSON.parse(`[
-
   {
     "id": 0,
-    "start": "2026-01-09T16:15:47.756095Z",
-    "end": "2026-01-09T16:30:47.756095Z",
-    "title": "2 spots left",
-    "backgroundColor": "#00BA28"
+    "start": "2026-01-12T07:00:00Z",
+    "end": "2026-01-12T07:15:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 2
   },
   {
     "id": 1,
-    "start": "2026-01-09T16:30:47.756095Z",
-    "end": "2026-01-09T16:45:47.756095Z",
-    "title": "1 spots left",
-    "backgroundColor": "#F59B1D"
+    "start": "2026-01-12T07:15:00Z",
+    "end": "2026-01-12T07:30:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 1
   },
   {
     "id": 2,
-    "start": "2026-01-12T07:00:00Z",
-    "end": "2026-01-12T07:15:00Z",
-    "title": "2 spots left",
-    "backgroundColor": "#00BA28"
+    "start": "2026-01-12T07:30:00Z",
+    "end": "2026-01-12T07:45:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 3
   },
   {
     "id": 3,
-    "start": "2026-01-12T07:15:00Z",
-    "end": "2026-01-12T07:30:00Z",
-    "title": "0 spots left",
-    "backgroundColor": "#C70000"
+    "start": "2026-01-12T07:45:00Z",
+    "end": "2026-01-12T08:00:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 1
   },
   {
     "id": 4,
-    "start": "2026-01-12T07:30:00Z",
-    "end": "2026-01-12T07:45:00Z",
-    "title": "1 spots left",
-    "backgroundColor": "#F59B1D"
+    "start": "2026-01-12T08:00:00Z",
+    "end": "2026-01-12T08:15:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 1
   },
   {
     "id": 5,
-    "start": "2026-01-12T07:45:00Z",
-    "end": "2026-01-12T08:00:00Z",
-    "title": "2 spots left",
-    "backgroundColor": "#00BA28"
+    "start": "2026-01-12T08:15:00Z",
+    "end": "2026-01-12T08:30:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 0
   },
   {
     "id": 6,
-    "start": "2026-01-12T08:00:00Z",
-    "end": "2026-01-12T08:15:00Z",
-    "title": "1 spots left",
-    "backgroundColor": "#F59B1D"
+    "start": "2026-01-12T08:30:00Z",
+    "end": "2026-01-12T08:45:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 1
   },
   {
     "id": 7,
-    "start": "2026-01-12T08:15:00Z",
-    "end": "2026-01-12T08:30:00Z",
-    "title": "2 spots left",
-    "backgroundColor": "#00BA28"
+    "start": "2026-01-12T08:45:00Z",
+    "end": "2026-01-12T09:00:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 2
   },
   {
     "id": 8,
-    "start": "2026-01-12T08:30:00Z",
-    "end": "2026-01-12T08:45:00Z",
-    "title": "1 spots left",
-    "backgroundColor": "#F59B1D"
+    "start": "2026-01-12T09:00:00Z",
+    "end": "2026-01-12T09:15:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 1
   },
   {
     "id": 9,
-    "start": "2026-01-12T08:45:00Z",
-    "end": "2026-01-12T09:00:00Z",
-    "title": "0 spots left",
-    "backgroundColor": "#C70000"
+    "start": "2026-01-12T09:15:00Z",
+    "end": "2026-01-12T09:30:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 1
   },
   {
     "id": 10,
-    "start": "2026-01-12T09:00:00Z",
-    "end": "2026-01-12T09:15:00Z",
-    "title": "1 spots left",
-    "backgroundColor": "#F59B1D"
+    "start": "2026-01-12T09:30:00Z",
+    "end": "2026-01-12T09:45:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 2
   },
   {
     "id": 11,
-    "start": "2026-01-12T09:15:00Z",
-    "end": "2026-01-12T09:30:00Z",
-    "title": "3 spots left",
-    "backgroundColor": "#00BA28"
+    "start": "2026-01-12T09:45:00Z",
+    "end": "2026-01-12T10:00:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 0
   },
   {
     "id": 12,
-    "start": "2026-01-12T09:30:00Z",
-    "end": "2026-01-12T09:45:00Z",
-    "title": "0 spots left",
-    "backgroundColor": "#C70000"
+    "start": "2026-01-12T10:00:00Z",
+    "end": "2026-01-12T10:15:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 0
   },
   {
     "id": 13,
-    "start": "2026-01-12T09:45:00Z",
-    "end": "2026-01-12T10:00:00Z",
-    "title": "3 spots left",
-    "backgroundColor": "#00BA28"
+    "start": "2026-01-12T10:15:00Z",
+    "end": "2026-01-12T10:30:00Z",
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 1
   },
   {
     "id": 14,
-    "start": "2026-01-12T10:00:00Z",
-    "end": "2026-01-12T10:15:00Z",
-    "title": "2 spots left",
-    "backgroundColor": "#00BA28"
-  },
-  {
-    "id": 15,
-    "start": "2026-01-12T10:15:00Z",
-    "end": "2026-01-12T10:30:00Z",
-    "title": "2 spots left",
-    "backgroundColor": "#00BA28"
-  },
-  {
-    "id": 16,
     "start": "2026-01-12T10:30:00Z",
     "end": "2026-01-12T10:45:00Z",
-    "title": "0 spots left",
-    "backgroundColor": "#C70000"
-  },
-  {
-    "id": 17,
-    "start": "2026-01-12T10:45:00Z",
-    "end": "2026-01-12T11:00:00Z",
-    "title": "3 spots left",
-    "backgroundColor": "#00BA28"
-  },
-  {
-    "id": 18,
-    "start": "2026-01-12T11:00:00Z",
-    "end": "2026-01-12T11:15:00Z",
-    "title": "0 spots left",
-    "backgroundColor": "#C70000"
-  },
-  {
-    "id": 19,
-    "start": "2026-01-12T11:15:00Z",
-    "end": "2026-01-12T11:30:00Z",
-    "title": "0 spots left",
-    "backgroundColor": "#C70000"
-  },
-  {
-    "id": 20,
-    "start": "2026-01-12T11:30:00Z",
-    "end": "2026-01-12T11:45:00Z",
-    "title": "0 spots left",
-    "backgroundColor": "#C70000"
-  },
-  {
-    "id": 21,
-    "start": "2026-01-12T11:45:00Z",
-    "end": "2026-01-12T12:00:00Z",
-    "title": "3 spots left",
-    "backgroundColor": "#00BA28"
-  },
-  {
-    "id": 22,
-    "start": "2026-01-12T12:00:00Z",
-    "end": "2026-01-12T12:15:00Z",
-    "title": "3 spots left",
-    "backgroundColor": "#00BA28"
-  } 
+    "location": "DELFT",
+    "spots": 3,
+    "spotsFilled": 0
+  }
 ]`);
+
+interface CalendarSlot {
+    id: string;
+    start: Date | null;
+    end: Date | null;
+    location?: string;
+    spots: number;
+    spotsFilled: number;
+    title?: string;
+    backgroundColor?: string
+    full?: boolean | null;
+}
 
 interface ActiveSlot {
     id?: string;
@@ -178,31 +148,33 @@ interface ActiveSlot {
 }
 
 
-export default function SlotPicker({slots}:
-                                   {
-                                       slots:
-                                           {
-                                               start: string,
-                                               end: string,
-                                               title?: string,
-                                               backgroundColor?: string
-                                           }[] | null
-                                   }) {
+export default function SlotPicker({slots}: { slots: CalendarSlot[] | null }) {
 
     const calendarRef = createRef<FullCalendar>()
     const [selectedSlot, setSelectedSlot] = useState<ActiveSlot | null>(null);
 
-
     if (slots == null)
         slots = testSlots;
     // slots = [];
+    if (slots != null) {
+        slots.forEach(function (slot, index) {
+
+            if (slot.spots == slot.spotsFilled) {
+                slots[index].backgroundColor = "#C70000";
+                slots[index].title = "Full";
+                slots[index].full = true;
+            } else if (slot.spotsFilled / slot.spots > 0.6) {
+                slots[index].backgroundColor = "#F59B1D";
+                slots[index].title = "Only " + (slot.spots - slot.spotsFilled) + " spots left!";
+            } else {
+                slots[index].backgroundColor = "#00BA28";
+                slots[index].title = (slot.spots - slot.spotsFilled) + " spots left";
+            }
+
+        }); // use arr as this
+    }
 
     const parseSelectedSlot = (id: string) => {
-        // const slotsWithActiveClass = document.getElementsByClassName("activeEvent");
-        //
-        // for(const slot of slotsWithActiveClass){
-        //     slot.classList.remove("activeEvent");
-        // }
 
         if (selectedSlot?.id != null) {
             const oldSelected = calendarRef.current?.getApi().getEventById(selectedSlot.id);
@@ -210,7 +182,13 @@ export default function SlotPicker({slots}:
         }
 
         const newSelected = calendarRef.current?.getApi().getEventById(id);
-        newSelected?.setProp('classNames', 'activeEvent');
+
+        if (newSelected?.extendedProps.full)
+            newSelected?.setProp('classNames', 'activeEvent full');
+        else
+            newSelected?.setProp('classNames', 'activeEvent');
+
+        console.log(newSelected);
 
         setSelectedSlot({
             id: newSelected?.id,
@@ -218,7 +196,6 @@ export default function SlotPicker({slots}:
             end: newSelected?.end
         });
     }
-
 
     return (
         <div className="calendar">
@@ -247,9 +224,9 @@ export default function SlotPicker({slots}:
                     parseSelectedSlot(info.event.id);
                 }}
 
-                events={slots || undefined}
+                events={(slots as object) || undefined}
                 //TODO add valid range?
-                initialDate={slots == null ? undefined : slots[0].start}
+                initialDate={slots == null ? undefined : slots[0].start as Date}
             />
         </div>
     )
