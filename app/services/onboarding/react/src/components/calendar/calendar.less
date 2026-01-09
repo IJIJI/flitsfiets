@@ -3,4 +3,25 @@ div.calendar {
     color: black;
     text-decoration: none;
   }
+
+  tr {
+    cursor: pointer !important;
+
+  }
+
+  tr.activeEvent{
+    color: white;
+    background-color: #0D6EFDFF;
+    transition: background-color 0.05s ease;
+
+    * {
+      transition: background-color 0.05s ease;
+    }
+
+    &:hover{
+      * {
+        background-color: #0048ff !important;
+      }
+    }
+  }
 }
