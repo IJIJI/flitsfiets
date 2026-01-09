@@ -22,16 +22,16 @@ public class UsersEventsConsumerConfig
     }
 
     @Bean
-    public Queue usersCreatedQueue()
+    public Queue appointmentsUsersCreatedQueue()
     {
         return QueueBuilder.durable(Q_USER_CREATED).build();
     }
 
     @Bean
-    public Binding bindUsersCreated(Queue mailingUsersCreatedQueue, TopicExchange usersEventsExchange)
+    public Binding bindUsersCreated(Queue appointmentsUsersCreatedQueue, TopicExchange usersEventsExchange)
     {
         return BindingBuilder
-                .bind(mailingUsersCreatedQueue)
+                .bind(appointmentsUsersCreatedQueue)
                 .to(usersEventsExchange)
                 .with(RK_USER_CREATED);
     }

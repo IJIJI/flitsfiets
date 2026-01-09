@@ -20,7 +20,7 @@ public class UsersEventsConsumerConfig
     }
 
     @Bean
-    public Queue usersCreatedQueue()
+    public Queue mailingUsersCreatedQueue()
     {
         return QueueBuilder.durable(Q_USER_CREATED).build();
     }

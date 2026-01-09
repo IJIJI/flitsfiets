@@ -22,16 +22,16 @@ public class AppointmentsEventsConsumerConfig
     }
 
     @Bean
-    public Queue appointmentsCreatedQueue()
+    public Queue mailingAppointmentsCreatedQueue()
     {
         return QueueBuilder.durable(Q_APPOINTMENT_CREATED).build();
     }
 
     @Bean
-    public Binding bindAppointmentsCreated(Queue appointmentsCreatedQueue, TopicExchange appointmentsEventsExchange)
+    public Binding bindAppointmentsCreated(Queue mailingAppointmentsCreatedQueue, TopicExchange appointmentsEventsExchange)
     {
         return BindingBuilder
-                .bind(appointmentsCreatedQueue)
+                .bind(mailingAppointmentsCreatedQueue)
                 .to(appointmentsEventsExchange)
                 .with(RK_APPOINTMENT_CREATED);
     }
