@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import synapt.flitsfiets.appointments.enums.AppointmentType;
+import synapt.flitsfiets.common.enums.AppointmentType;
 import synapt.flitsfiets.common.enums.Location;
 
 import java.time.Instant;
