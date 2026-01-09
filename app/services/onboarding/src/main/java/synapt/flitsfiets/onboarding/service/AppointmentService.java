@@ -47,9 +47,12 @@ public class AppointmentService
 
         List<TimeSlotFormattedDTO> formatSlots = new ArrayList<>(); //TODO MODELMAPPER, PLEASE
 
-        for ( TimeSlotDTO slot : slots){
+        int index = 0; // Should be actual slot ID's - Duhh
 
+        for ( TimeSlotDTO slot : slots){
             TimeSlotFormattedDTO formattedSlot = new TimeSlotFormattedDTO();
+
+            formattedSlot.setId(index++);
             formattedSlot.setStart(String.valueOf(slot.getStart()));
             formattedSlot.setEnd(String.valueOf(slot.getEnd()));
 

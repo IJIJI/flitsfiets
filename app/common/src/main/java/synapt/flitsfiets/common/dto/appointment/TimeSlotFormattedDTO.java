@@ -14,6 +14,7 @@ import java.time.Instant;
 @NoArgsConstructor
 public class TimeSlotFormattedDTO
 {
+    long id;
     String start;
     String end;
     String title;
