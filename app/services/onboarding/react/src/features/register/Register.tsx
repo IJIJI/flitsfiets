@@ -157,6 +157,8 @@ export default function Register() {
                 return res.json()
             })
             .then(data => {
+                data.start = new Date(Date.parse(data.start));
+                data.end = new Date(Date.parse(data.end));
                 setAssignedSlot(data);
             })
             .catch(err => {
@@ -584,7 +586,7 @@ export default function Register() {
                         </Form>
                         :
                         <Form>
-                            Welcome to BikeFlash! Your appointment is made. We'll see you on {(assignedSlot as ActiveSlot).start?.toString()} You should receive an appointment confirmation email. In the meantime
+                            Welcome to BikeFlash! Your appointment is made. We'll see you on <b>{(assignedSlot as ActiveSlot).start?.toLocaleString("en-NL", { timeZone: "Europe/Amsterdam" })}</b> You should receive an appointment confirmation email. In the meantime
                             you can login to the customer portal! Here you can manage your appointments, change your
                             details and request repairs to your bike.
                         </Form>
