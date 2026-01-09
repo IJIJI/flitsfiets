@@ -41,7 +41,7 @@ export default function MultiStepFormContainer({
             <div className="header">
                 <h1>{titles[currentStep]}</h1>
                 <div className="progressBar">
-                    <div className="progress" style={{width: currentStep / steps.length * 100 + "%"}}></div>
+                    <div className="progress" style={{width: currentStep / (steps.length-1) * 100 + "%"}}></div>
                 </div>
             </div>
             <div className="stepContent">
