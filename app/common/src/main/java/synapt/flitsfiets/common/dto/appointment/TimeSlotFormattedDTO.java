@@ -18,5 +18,8 @@ public class TimeSlotFormattedDTO
     String start;
     String end;
     String title;
-    String backgroundColor;
+    Integer spots;
+    Integer spotsFilled;
+    String backgroundColor; // Client side?
+    Boolean full;
 }
