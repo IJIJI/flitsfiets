@@ -9,6 +9,7 @@ import synapt.flitsfiets.common.dto.appointment.TimeSlotDTO;
 import synapt.flitsfiets.common.dto.user.UserExtendedDTO;
 import synapt.flitsfiets.common.dto.user.UserFullPasswordDTO;
 import synapt.flitsfiets.common.dto.user.creation.UserCreationDTO;
+import synapt.flitsfiets.common.enums.AppointmentType;
 import synapt.flitsfiets.common.enums.Location;
 import synapt.flitsfiets.common.enums.UserType;
 import synapt.flitsfiets.common.valueObject.UserAddress;
@@ -91,6 +92,8 @@ public class OnboardingController {
     @PostMapping("/appointment")
     public AppointmentDTO onboardUser(@RequestBody AppointmentDTO appointment) {
         System.out.println("Appointment Requested: " + appointment);
+
+        appointment.setType(AppointmentType.PICKUP); // There should be more validation...
 
         return appointmentService.requestAppointment(appointment);
     }
