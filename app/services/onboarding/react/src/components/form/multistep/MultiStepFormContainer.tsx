@@ -28,6 +28,7 @@ export default function MultiStepFormContainer({
     const nextstep = () => {
         const currentCallback = callback[currentStep];
 
+        if (currentStep < children.length-1)
         setCurrentStep(currentStep + 1);
 
         if (currentCallback != null) {
@@ -51,12 +52,8 @@ export default function MultiStepFormContainer({
                     <button className="btn btn-secondary" onClick={() => setCurrentStep(currentStep - 1)}
                             disabled={!(currentStep > 0)}><MdArrowBack/></button>
                 </div>
-                {currentStep < steps.length - 1 ?
-                    <button className="btn btn-primary w-100" onClick={() => nextstep()}
-                            disabled={!(completed[currentStep])}>{buttonText[currentStep]}</button>
-                    :
-                    <button className="btn btn-primary w-100" type="submit">{buttonText[currentStep]}</button>
-                }
+                <button className="btn btn-primary w-100" onClick={() => nextstep()}
+                        disabled={!(completed[currentStep])}>{buttonText[currentStep]}</button>
             </div>
         </FormContainer>
     );
