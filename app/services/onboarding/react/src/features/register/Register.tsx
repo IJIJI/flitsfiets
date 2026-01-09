@@ -119,7 +119,7 @@ export default function Register() {
             .catch(err => {
                 console.log("ERROR: ", err);
                 setCurrentStep(4);
-                toast.error(err.message);
+                toast.error("Failed: " + err.message);
             })
     }
 
