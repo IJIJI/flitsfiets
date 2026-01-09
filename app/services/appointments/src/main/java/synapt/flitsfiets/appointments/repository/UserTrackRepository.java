@@ -7,6 +7,7 @@ import synapt.flitsfiets.appointments.model.UserTrack;
 @Repository
 public interface UserTrackRepository extends JpaRepository<UserTrack, Long> {
     UserTrack findByEmail(String email);
+    UserTrack findById(long id);
 
     boolean existsByEmail(String email);
 }

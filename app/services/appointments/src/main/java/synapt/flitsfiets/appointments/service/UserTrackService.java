@@ -26,8 +26,12 @@ public class UserTrackService
         return userTrackRepository.existsByEmail(email);
     }
 
-    public UserExtendedDTO getByEmail(String email){
-        return modelMapper.map(userTrackRepository.findByEmail(email), UserExtendedDTO.class);
+    public UserTrack getByEmail(String email){
+        return userTrackRepository.findByEmail(email);
 
+    }
+
+    public UserTrack getById(long id){
+        return userTrackRepository.findById(id);
     }
 }
