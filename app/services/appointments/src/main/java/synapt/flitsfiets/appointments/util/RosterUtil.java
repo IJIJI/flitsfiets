@@ -28,7 +28,6 @@ public class RosterUtil
         LocalDate curDate = LocalDate.now(zoneId);
         List<TimeSlotDTO> output = new ArrayList<>();
 
-
         for (int x = 0; x < workDaysInFuture; x++)
         {
             LocalTime curDayStart = dayStart;
@@ -49,6 +48,12 @@ public class RosterUtil
 
             curDate = curDate.plusDays(1);
         }
+
+        int index = 0;
+        for(TimeSlotDTO slot : output){
+            slot.setId(index++);
+        }
+
         return output;
     }
 
