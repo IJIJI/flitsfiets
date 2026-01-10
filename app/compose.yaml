@@ -118,9 +118,18 @@ services:
 
   service-appointments:
     image: 'ff-appointments:latest'
-#    depends_on:
-#      postgres:
-#        condition: service_started
+    #    depends_on:
+    #      postgres:
+    #        condition: service_started
+    restart: unless-stopped
+    networks: [ internal ]
+    profiles: [ prod ]
+
+  service-mailing:
+    image: 'ff-mailing:latest'
+    #    depends_on:
+    #      postgres:
+    #        condition: service_started
     restart: unless-stopped
     networks: [ internal ]
     profiles: [ prod ]
