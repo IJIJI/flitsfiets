@@ -1,4 +1,9 @@
 name: FlitsFiets
+
+x-service-urls: &service-urls
+  SERVICES_USERS_BASE_URL: "http://service-users:6001"
+  SERVICES_APPOINTMENTS_BASE_URL: "http://service-appointments:6003"
+
 services:
   rabbitmq:
     image: rabbitmq:3-management
@@ -95,17 +100,20 @@ services:
     profiles: [ dev ]
 
 
+
   service-onboarding:
     image: 'ff-onboarding:latest'
     restart: unless-stopped
     networks: [ edge, internal ]
     profiles: [ prod ]
+    environment: *service-urls
 
   service-frontend:
     image: 'ff-frontend:latest'
     restart: unless-stopped
     networks: [ edge, internal ]
     profiles: [ prod ]
+    environment: *service-urls
 
   service-users:
     image: 'ff-users:latest'
@@ -115,6 +123,9 @@ services:
     restart: unless-stopped
     networks: [ internal ]
     profiles: [ prod ]
+    environment: *service-urls
+    volumes:
+      - userdb:/workspace/data
 
   service-appointments:
     image: 'ff-appointments:latest'
@@ -124,6 +135,9 @@ services:
     restart: unless-stopped
     networks: [ internal ]
     profiles: [ prod ]
+    environment: *service-urls
+    volumes:
+      - appointmentdb:/workspace/data
 
   service-mailing:
     image: 'ff-mailing:latest'
@@ -133,6 +147,9 @@ services:
     restart: unless-stopped
     networks: [ internal ]
     profiles: [ prod ]
+    environment: *service-urls
+    volumes:
+      - mailingdb:/workspace/data
 
 networks:
   internal:
@@ -147,3 +164,8 @@ volumes:
   caddydata:
   caddyconfig:
   smtp4dev-data:
+  # Service DBs
+  userdb:
+  appointmentdb:
+  mailingdb:
+
