@@ -76,7 +76,7 @@ jobs:
             
           script: |
             cd ~/flitsfiets/upload
-            mvn clean install
-            docker compose down
+            mvn clean install -Pimage
+            docker compose --profile prod down
             docker compose --profile prod up --wait
             
