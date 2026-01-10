@@ -2,11 +2,11 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common" />
       </profile>
       <profile name="Annotation profile for flitsfiets" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -14,27 +14,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
-        </processorPath>
-        <module name="appointments" />
-        <module name="frontend" />
-      </profile>
-      <profile name="Annotation profile for onboarding" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
         <module name="onboarding" />
-      </profile>
-      <profile name="Annotation profile for users" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
-        </processorPath>
+        <module name="appointments" />
+        <module name="common" />
+        <module name="mailing" />
+        <module name="frontend" />
         <module name="users" />
       </profile>
     </annotationProcessing>
@@ -49,6 +34,7 @@
       <module name="common" options="-parameters" />
       <module name="frontend" options="-parameters" />
       <module name="frontend (1)" options="-parameters" />
+      <module name="mailing" options="-parameters" />
       <module name="onboarding" options="-parameters" />
       <module name="subscriptions" options="-parameters" />
       <module name="users" options="-parameters" />

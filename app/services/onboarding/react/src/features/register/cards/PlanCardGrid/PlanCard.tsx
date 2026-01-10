@@ -3,9 +3,9 @@ import "./../card.less";
 
 
 export default function PlanCard({index, setIndex, activeIndex, title, price, discountedprice}: {
-    index: number,
-    setIndex: (index: number) => void,
-    activeIndex: number,
+    index: number | string,
+    setIndex: (index: number | string) => void,
+    activeIndex: number | string,
     title: string,
     price: string,
     discountedprice?: string

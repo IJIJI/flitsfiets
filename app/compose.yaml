@@ -1,35 +1,26 @@
 name: FlitsFiets
 services:
-  postgres:
-    image: 'postgres:18'
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U aclive_user -d aclive" ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports: # Should not be exposed and done through the internal network with discovery. Exposed here for development purposes only.
+      - "5672:5672"
+      - "15672:15672"   # UI
     environment:
-      POSTGRES_DB: flietsfiets
-      POSTGRES_USER: flitsfiets_user
-      POSTGRES_PASSWORD: secret
-    ports:
-      - 5432:5432
-    volumes:
-      - pgdata:/var/lib/postgresql
-    networks:
-      - internal
+      RABBITMQ_DEFAULT_USER: app
+      RABBITMQ_DEFAULT_PASS: secret
+    networks: [ internal ]
   caddy:
     image: caddy:2-alpine
     restart: unless-stopped
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - caddydata:/data
       - caddyconfig:/config
-    networks:
-      - internal
-    profiles: [ dev, prod ]
+    networks: [ edge, internal ]
+    profiles: [ prod ]
 
 #  keycloak:
 #    container_name: baeldung-keycloak.openid-provider
@@ -78,8 +69,9 @@ services:
       # Add 127.0.0.1: prefix for localhost-only access (recommended for security)
     #      - '110:110'
     volumes:
-      # This is where smtp4dev stores the database..
+      # This is where smtp4dev stores the database...
       - smtp4dev-data:/smtp4dev
+    networks: [ internal ]
     environment:
       #Specifies the URLs the web UI will use inside the container.
       - ServerOptions__Urls=http://*:80
@@ -105,51 +97,44 @@ services:
 
   service-onboarding:
     image: 'ff-onboarding:latest'
-    depends_on:
-      postgres:
-        condition: service_started
-    environment:
-      #      SMTP_HOST: ${SMTP_HOST}
-      #      SMTP_PORT: ${SMTP_PORT:-25}
-      #      SMTP_USERNAME: ${SMTP_USERNAME}
-      #      SMTP_PASSWORD: ${SMTP_PASSWORD}
-      #      JWT_SECRET: ${JWT_SECRET}
-      POSTGRES_PASSWORD: secret
-    ports:
-      - 8090:8010
     restart: unless-stopped
-    networks:
-      - internal
+    networks: [ edge, internal ]
     profiles: [ prod ]
 
   service-frontend:
     image: 'ff-frontend:latest'
-    depends_on:
-      postgres:
-        condition: service_started
-    environment:
-      #      SMTP_HOST: ${SMTP_HOST}
-      #      SMTP_PORT: ${SMTP_PORT:-25}
-      #      SMTP_USERNAME: ${SMTP_USERNAME}
-      #      SMTP_PASSWORD: ${SMTP_PASSWORD}
-      #      JWT_SECRET: ${JWT_SECRET}
-      POSTGRES_PASSWORD: secret
-    #    ports:
-    #      - 80:8080
     restart: unless-stopped
-    networks:
-      - internal
+    networks: [ edge, internal ]
+    profiles: [ prod ]
+
+  service-users:
+    image: 'ff-users:latest'
+#    depends_on:
+#      postgres:
+#        condition: service_started
+    restart: unless-stopped
+    networks: [ internal ]
+    profiles: [ prod ]
+
+  service-appointments:
+    image: 'ff-appointments:latest'
+#    depends_on:
+#      postgres:
+#        condition: service_started
+    restart: unless-stopped
+    networks: [ internal ]
     profiles: [ prod ]
 
 networks:
-  #  web:
-  #    external: true
   internal:
+    external: false
+    driver: bridge
+  edge:
     external: false
     driver: bridge
 
 volumes:
-  pgdata:
+#  pgdata:
   caddydata:
   caddyconfig:
-#  smtp4dev-data:
+  smtp4dev-data:

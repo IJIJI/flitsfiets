@@ -4,9 +4,9 @@ import type {JSX} from "react";
 
 
 export default function BikeCard({index, setIndex, activeIndex, title, description, startprice, icon}: {
-    index: number,
-    setIndex: (index: number) => void,
-    activeIndex: number,
+    index: number | string,
+    setIndex: (index: number | string) => void,
+    activeIndex: number | string,
     title: string,
     description: string,
     startprice: string,

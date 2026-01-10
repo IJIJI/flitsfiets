@@ -1,0 +1,39 @@
+div.calendar {
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  tr.fc-event {
+    cursor: pointer !important;
+    user-select: none;
+  }
+
+  tr.activeEvent{
+    color: white;
+    background-color: #0D6EFDFF;
+    transition: background-color 0.05s ease;
+    cursor: default !important;
+
+    * {
+      transition: background-color 0.05s ease;
+      cursor: default !important;
+    }
+
+    &.full {
+      background-color: #ed5f5f;
+
+      &:hover{
+        * {
+          background-color: #e83f3f !important;
+        }
+      }
+    }
+
+    &:hover{
+      * {
+        background-color: #0048ff !important;
+      }
+    }
+  }
+}

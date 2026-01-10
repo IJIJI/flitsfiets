@@ -1,3 +1,10 @@
 spring:
   application:
     name: Common
+
+
+services:
+  appointments:
+    base-url: http://appointments:6003
+  users:
+    base-url: http://users:6001

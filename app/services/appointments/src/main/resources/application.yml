@@ -1,6 +1,23 @@
 spring:
   application:
     name: Appointments
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: app
+    password: secret
+  datasource:
+    url: jdbc:h2:file:./data/db;AUTO_RECONNECT=TRUE;MODE=PostgreSQL;
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
 
 server:
-  port: 6000
+  port: 6003
