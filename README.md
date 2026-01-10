@@ -5,7 +5,7 @@ well-built bike in a flash.
 
 > [!CAUTION]
 > This is a personal project and is not intended for production use. It is built for learning purposes only, and there
-> are definitely some security issues. At this moment password hashing is not even implemented.
+> are definitely some security issues. At this moment auth, nor password hashing is implemented.
 
 ## Brief description
 
@@ -22,8 +22,8 @@ These are the following services:
 
 - Onboarding: Handles user registration and onboarding. There is no authentication on onboarding, hence the separation.
 - Frontend: Serves the main and onboarding web application.
+- Users: Manages user data, authentication, and user subscriptions. Could later be split into Users and Subscriptions/Billing. We are currently not doing any billing, currently wouldn't add much. Note: Authentication is currently not implemented. When it is, it will be handled by a service like keycloak and merely coördinated by this service.
 - Appointments: Manages all appointments.
-- Subscriptions: Manages sunscription plans and user subscriptions.
 - Fleet: Manages the fleet of bikes, including loaner bikes.
 - Mailing: Manages mailing to users.
 - Maintenance: Tracks bike maintenance and hosts the maintenance portal.
@@ -37,5 +37,4 @@ For example, when a user is created: The user is broadcast for services to updat
 welcome email is sent from that.
 
 # Development
-
-To get started in developing this project you should look at the [Development](./app/) documentation.
+To get started developing this project, you should look at the [Development](./app/) documentation.
