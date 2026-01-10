@@ -2,11 +2,11 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="common" />
       </profile>
       <profile name="Annotation profile for flitsfiets" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -17,6 +17,8 @@
         </processorPath>
         <module name="onboarding" />
         <module name="appointments" />
+        <module name="common" />
+        <module name="mailing" />
         <module name="frontend" />
         <module name="users" />
       </profile>
@@ -32,6 +34,7 @@
       <module name="common" options="-parameters" />
       <module name="frontend" options="-parameters" />
       <module name="frontend (1)" options="-parameters" />
+      <module name="mailing" options="-parameters" />
       <module name="onboarding" options="-parameters" />
       <module name="subscriptions" options="-parameters" />
       <module name="users" options="-parameters" />

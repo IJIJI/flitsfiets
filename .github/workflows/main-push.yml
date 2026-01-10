@@ -22,10 +22,10 @@ jobs:
       - name: Make production envfile
         uses: SpicyPizza/create-envfile@v2.0
         with:
-          # envkey_SMTP_HOST: ${{ secrets.ENV_SMTP_HOST}}
-          # envkey_SMTP_USERNAME: ${{ secrets.ENV_SMTP_USERNAME}}
-          # envkey_SMTP_PASSWORD: ${{ secrets.ENV_SMTP_PASSWORD}}
-          # envkey_SMTP_PORT: 587
+          envkey_SMTP_HOST: ${{ secrets.SMTP_HOST}}
+          envkey_SMTP_USERNAME: ${{ secrets.SMTP_USERNAME}}
+          envkey_SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD}}
+          envkey_SMTP_PORT: 587
           directory: './app/'
           file_name: .env
 

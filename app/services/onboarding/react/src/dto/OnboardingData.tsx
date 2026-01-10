@@ -1,14 +1,14 @@
 export enum BikeType {
     UNDEFINED = 0,
-    Regular = 1,
-    Electric = 2,
-    Moped = 3,
+    Regular = "REGULAR",
+    Electric = "ELECTRIC",
+    Moped = "MOPED",
 }
 export enum PlanType {
     UNDEFINED = 0,
-    Monthly = 1,
-    Yearly = 2,
-    BiYearly = 3,
+    Monthly = "MONTHLY",
+    Yearly = "YEARLY",
+    BiYearly = "BIYEARLY",
 }
 
 export interface OnboardingData {
