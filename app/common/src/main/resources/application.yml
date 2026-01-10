@@ -5,6 +5,6 @@ spring:
 
 services:
   appointments:
-    base-url: http://appointments:6003
+    base-url: http://service-appointments:6003
   users:
-    base-url: http://users:6001
+    base-url: http://service-users:6001
